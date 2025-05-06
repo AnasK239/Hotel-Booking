@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-public class customerController {
+public class customerController implements UserAwareController{
     @FXML
     private Button viewRoomsButton;
 
@@ -24,6 +24,13 @@ public class customerController {
 
     @FXML
     private Button logOutButton;
+
+    private Customer customer;
+
+    @Override
+    public void setUser(User user) {
+        this.customer = (Customer) user;
+    }
 
 
     @FXML
@@ -63,7 +70,6 @@ public class customerController {
         }
     }
 
-
     @FXML
     private void handleAddBooking(ActionEvent event) {
         System.out.println("Add Booking clicked");
@@ -78,7 +84,7 @@ public class customerController {
     private void handleViewHistory(ActionEvent event) {
         System.out.println("View Booking History clicked");
         try {
-            navigateToScreen("BookingHistory.fxml", event, "Booking History");
+            navigateToScreen("UserBookingHistory.fxml", event, "Booking History");
         } catch (IOException e) {
 
         }
@@ -104,7 +110,13 @@ public class customerController {
     }
 
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        Object controller = loader.getController();
+        if (controller instanceof UserAwareController) {
+            ((UserAwareController) controller).setUser(customer);
+        }
+
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

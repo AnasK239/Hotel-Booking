@@ -50,7 +50,7 @@ public class loginController {
         for (User u : all){
             if (u.getUserName().equals(loginUsernameField.getText()) && u.getPassword().equals(loginPasswordField.getText())) {
                 if (u instanceof Customer) {
-                    navigateToScreen("customer2.fxml", event, "Dashboard");
+                    navigateToScreenFwd("customer2.fxml", event, "Dashboard", u);
                 }
                 else if (u instanceof Admin) {
                     navigateToScreen("Admin.fxml", event, "Dashboard");
@@ -64,6 +64,19 @@ public class loginController {
 
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle(title);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void navigateToScreenFwd(String fxmlFile, ActionEvent event, String title, User u) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        customerController controller = loader.getController();
+        controller.setUser(u);
+
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

@@ -18,10 +18,9 @@ public class Customer extends User {
         this.bookings_prv = new ArrayList<>();
         this.payments = new ArrayList<>();
     }
-   Booking bookRoom(Hotel hotel, Room room, Date checkInDate, Date checkOutDate) {
+   void bookRoom(Hotel hotel, Room room, Date checkInDate, Date checkOutDate) {
        Booking booking = new Booking(this, hotel, room, checkInDate, checkOutDate);
        bookings_prv.add(booking);
-       return booking;
    }
     boolean cancelBooking(Booking booking) {
         if (bookings_prv.contains(booking)) {
