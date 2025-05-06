@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="640.0" prefWidth="640.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hotel.UpdateUserController">
+
+    <VBox alignment="CENTER" spacing="20.0"
+          AnchorPane.topAnchor="30.0"
+          AnchorPane.bottomAnchor="30.0"
+          AnchorPane.leftAnchor="30.0"
+          AnchorPane.rightAnchor="30.0"
+          style="-fx-background-color: #f4f6fa;">
+
+        <Label text="Update User"
+               style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" />
+
+        <VBox spacing="15.0" style="-fx-padding: 20px; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
+
+            <TextField fx:id="nameField" promptText="Full Name" />
+            <TextField fx:id="usernameField" promptText="Username" />
+            <TextField fx:id="emailField" promptText="Email" />
+            <PasswordField fx:id="passwordField" promptText="Password" />
+            <TextField fx:id="phoneNumberField" promptText="Phone Number" />
+        </VBox>
+
+        <HBox spacing="15.0" alignment="CENTER">
+            <Button fx:id="updateButton" text="Update"
+                    onAction="#handleUpdate"
+                    style="-fx-background-color: #1F3B73; -fx-text-fill: white; -fx-padding: 8 20; -fx-font-size: 14px; -fx-background-radius: 6;" />
+            <Button fx:id="backButton" text="Back"
+                    onAction="#handleBack"
+                    style="-fx-background-color: transparent; -fx-border-color: #1F3B73; -fx-text-fill: #1F3B73; -fx-padding: 8 20; -fx-font-size: 14px; -fx-background-radius: 6; -fx-border-radius: 6;" />
+        </HBox>
+
+    </VBox>
+</AnchorPane>
