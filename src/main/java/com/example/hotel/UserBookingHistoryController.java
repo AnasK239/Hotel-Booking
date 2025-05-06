@@ -40,11 +40,13 @@ public class UserBookingHistoryController implements UserAwareController{
     @Override
     public void setUser(User user) {
         this.customer = (Customer) user;
+        updateTable();
     }
 
     @FXML
-    public void initialize() {
-        // Optional Booking ID if needed
+    public void updateTable() {
+        bookingsTable.setItems(FXCollections.observableArrayList(customer.viewBookingsHistory()));
+
         bookingIdColumn.setCellValueFactory(cellData ->
                         new SimpleStringProperty(String.valueOf(customer.viewBookingsHistory().indexOf(cellData.getValue()) + 1)));
 
@@ -59,8 +61,6 @@ public class UserBookingHistoryController implements UserAwareController{
             String range = formatDate(b.getCheckInDate()) + " to " + formatDate(b.getCheckOutDate());
             return new SimpleStringProperty(range);
         });
-
-        bookingsTable.setItems(FXCollections.observableArrayList(customer.viewBookingsHistory()));
     }
     @FXML
     public void handlebackbtn(ActionEvent event) {

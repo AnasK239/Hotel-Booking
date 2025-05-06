@@ -26,7 +26,6 @@ public class App extends Application {
         Date checkOutDate2 = new Date(2025-1900, 10, 5);
         Booking b1 = new Booking(u4, h1, r1, checkInDate, checkOutDate);
         Booking b2 = new Booking(u4, h1, r1, checkInDate2, checkOutDate2);
-        u4.bookRoom(h1, r2, checkInDate, checkOutDate);
         launch(args);
 
     }
