@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AvailableRoomsController {
+public class AvailableRoomsController implements UserAwareController{
 
     @FXML
     private TableView<Room> roomsTable;
@@ -32,8 +32,16 @@ public class AvailableRoomsController {
     @FXML
     private Button backbtn;
 
+    private Customer customer;
+
+    @Override
+    public void setUser(User user) {
+        this.customer = (Customer) user;
+        updateTable();
+    }
+
     @FXML
-    public void initialize() {
+    public void updateTable() {
 
         roomNumberCol.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getID()).asObject()
@@ -67,7 +75,11 @@ public class AvailableRoomsController {
     }
 
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        customerController controller = loader.getController();
+        controller.setUser(customer);
+
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);
