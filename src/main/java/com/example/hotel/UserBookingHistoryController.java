@@ -65,13 +65,17 @@ public class UserBookingHistoryController implements UserAwareController{
     @FXML
     public void handlebackbtn(ActionEvent event) {
         try {
-            navigateToScreen("Admin.fxml", event, "Login");
+            navigateToScreen("customer2.fxml", event, "Login");
         } catch (IOException e) {
 
         }
     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        customerController controller = loader.getController();
+        controller.setUser(customer);
+
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

@@ -74,7 +74,7 @@ public class customerController implements UserAwareController{
     private void handleAddBooking(ActionEvent event) {
         System.out.println("Add Booking clicked");
         try {
-            navigateToScreen("NewBooking.fxml", event, "Create Booking");
+            navigateToScreen("AddBooking.fxml", event, "Create Booking");
         } catch (IOException e) {
 
         }
