@@ -56,7 +56,6 @@ public class ManageUsersController {
         usernameColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getUserName()));
 
-        // Initialize ObservableList
         refreshUsersList();
     }
 
