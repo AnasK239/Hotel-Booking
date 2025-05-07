@@ -7,10 +7,10 @@ public class StandardRoom extends Room{
     private String bedType;
     private boolean hasTV;
 
-    StandardRoom(int capacity, float price, boolean booked, Date availableDate, String hotelName,
+    StandardRoom(int capacity, float price, boolean booked, Date availableDate, Hotel hotel,
                     String bedType, boolean hasTV, String description) {
 
-        super(capacity, price,  booked,  availableDate,  hotelName,  description);
+        super(capacity, price,  booked,  availableDate,  hotel,  description);
         this.bedType = bedType;
         this.hasTV = hasTV;
     }

@@ -35,6 +35,9 @@ public class UserBookingHistoryController implements UserAwareController{
     @FXML
     private TableColumn<Booking, String> userColumn;
 
+    @FXML
+    private TableColumn<Booking, String> hotelColumn;
+
     private Customer customer;
 
     @Override
@@ -54,7 +57,11 @@ public class UserBookingHistoryController implements UserAwareController{
                 new SimpleStringProperty(cellData.getValue().getCustomer().getName()));
 
         roomColumn.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getRoom().getDescription()));
+                new SimpleStringProperty(cellData.getValue().getRoom().getClass().getSimpleName()));
+
+        hotelColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getHotel().getName())
+        );
 
         dateColumn.setCellValueFactory(cellData -> {
             Booking b = cellData.getValue();

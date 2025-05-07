@@ -10,21 +10,22 @@ public abstract class Room{
     private float price;
     private boolean booked;
     private Date availableDate;
-    private String hotelName;
+    private final Hotel hotel;
     private String description;
 
     // Static list to hold all rooms
     private static List<Room> rooms = new ArrayList<>();
     
-    protected Room(int capacity, float price, boolean booked, Date availableDate, String hotelName, String description) {
+    protected Room(int capacity, float price, boolean booked, Date availableDate, Hotel hotel, String description) {
         this.ID = rooms.size();
         this.capacity = capacity;
         this.price = price;
         this.booked = booked;
         this.availableDate = availableDate;
-        this.hotelName = hotelName;
+        this.hotel = hotel;
         this.description = description;
         rooms.add(this);// Add the room to the static list on creation
+        hotel.addRoom(this);
     }
 
     // Abstract Methods
@@ -67,11 +68,8 @@ public abstract class Room{
         this.availableDate = availableDate;
     }
 
-    String getHotelName() {
-        return hotelName;
-    }
-    void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    Hotel getHotel() {
+        return hotel;
     }
 
     String getDescription() {
@@ -91,7 +89,7 @@ public abstract class Room{
         capacity == room.capacity && 
         Float.compare(room.price, price) == 0 && 
         booked == room.booked &&
-        hotelName.equals(room.hotelName) &&
+        hotel.equals(room.hotel) &&
         description.equals(room.description));
     }
 

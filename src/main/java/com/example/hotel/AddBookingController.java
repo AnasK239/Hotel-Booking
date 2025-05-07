@@ -1,5 +1,6 @@
 package com.example.hotel;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,10 +13,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AddBookingController implements UserAwareController{
 
@@ -49,13 +53,14 @@ public class AddBookingController implements UserAwareController{
         hotelComboBox.setOnAction(e -> {
             Hotel selectedHotel = hotelComboBox.getSelectionModel().getSelectedItem();
             if (selectedHotel != null) {
-                roomComboBox.setItems(FXCollections.observableArrayList(selectedHotel.getRooms()));
+                List<Room> availableRooms = selectedHotel.getRooms().stream().filter(r -> !r.isBooked()).collect(Collectors.toList());
+                roomComboBox.setItems(FXCollections.observableArrayList(availableRooms));
             }
         });
     }
 
     @FXML
-    private void handleBookNow() {
+    private void handleBookNow(ActionEvent event) throws IOException {
         Hotel hotel = hotelComboBox.getSelectionModel().getSelectedItem();
         Room room = roomComboBox.getSelectionModel().getSelectedItem();
         LocalDate checkIn = checkInDatePicker.getValue();
@@ -67,12 +72,24 @@ public class AddBookingController implements UserAwareController{
             return;
         }
 
+        if (checkIn.isBefore(LocalDate.now()) || checkOut.isBefore(LocalDate.now())) {
+            statusLabel.setText("Dates cannot be in the past.");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+
+        if (checkIn.isAfter(checkOut)) {
+            statusLabel.setText("Check-in date cannot be after check-out date.");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+
         Date checkInDate = java.sql.Date.valueOf(checkIn);
         Date checkOutDate = java.sql.Date.valueOf(checkOut);
 
         customer.bookRoom(hotel, room, checkInDate, checkOutDate);
-        statusLabel.setText("Booking successful!");
-        statusLabel.setStyle("-fx-text-fill: green;");
+        room.setBooked(true);
+        navigateToScreen("customer2.fxml", event, "Dashboard");
     }
 
     @FXML

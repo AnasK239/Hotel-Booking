@@ -9,12 +9,15 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.hotel.AddBookingController"
-            prefWidth="600" prefHeight="500" style="-fx-background-color: #f9f9f9;">
+            prefWidth="640" prefHeight="640" style="-fx-background-color: #f9f9f9;">
 
-    <VBox alignment="CENTER" spacing="20" prefWidth="600" layoutX="0" layoutY="40">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" prefWidth="600" maxWidth="600">
+
         <Label text="Add Booking" style="-fx-font-size: 24px; -fx-text-fill: #1F3B73;" />
 
-        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 30; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);">
+        <VBox spacing="15"
+              style="-fx-background-color: white; -fx-padding: 30; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);">
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Label text="Hotel:" prefWidth="120" />
                 <ComboBox fx:id="hotelComboBox" prefWidth="300" />
@@ -46,4 +49,5 @@
         <Label fx:id="statusLabel" text="" style="-fx-text-fill: green;" />
     </VBox>
 </AnchorPane>
+
 
