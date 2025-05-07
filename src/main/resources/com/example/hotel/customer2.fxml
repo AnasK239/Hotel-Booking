@@ -123,8 +123,7 @@
                 -fx-cursor: hand;
             </style>
         </Button>
-
-        <!-- Manage Payment Methods Button -->
+        
         <Button fx:id="managePaymentButton" maxWidth="Infinity" onAction="#handleManagePayment" styleClass="dashboard-button">
             <graphic>
                 <HBox alignment="CENTER_LEFT" spacing="20">
@@ -161,7 +160,7 @@
 
         <Region VBox.vgrow="ALWAYS" />
 
-        <!-- Logout Button -->
+
         <Button fx:id="logOutButton" maxWidth="Infinity" onAction="#handleLogOut" styleClass="dashboard-button">
             <graphic>
                 <HBox alignment="CENTER_LEFT" spacing="20">

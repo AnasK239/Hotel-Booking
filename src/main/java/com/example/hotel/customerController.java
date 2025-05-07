@@ -90,11 +90,12 @@ public class customerController implements UserAwareController{
         }
     }
 
+
     @FXML
     private void handleManagePayment(ActionEvent event) {
         System.out.println("Manage Payment Methods clicked");
         try {
-            navigateToScreen("PaymentMethods.fxml", event, "Payment Methods");
+            navigateToScreen("PaymentMethods.fxml", event, "Login");
         } catch (IOException e) {
 
         }
