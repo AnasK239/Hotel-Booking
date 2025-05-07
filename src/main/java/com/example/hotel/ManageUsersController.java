@@ -40,6 +40,11 @@ public class ManageUsersController {
     @FXML
     private TableColumn<User, String> usernameColumn;
 
+    
+    @FXML
+    private Button addUser;
+    
+    @FXML
     private ObservableList<User> usersList;
 
     public void initialize() {
@@ -112,9 +117,40 @@ public class ManageUsersController {
         }
     }
 
+    
+    @FXML
+    void handleAddUser(ActionEvent event) {
+        try {
 
+            // You might want to pass the selected user to the update screen
+
+            // controller for userUpdate.fxml that accepts a user
+            // UserUpdateController controller = loader.getController();
+            // controller.setUser(selected);
+            navigateToScreen("AddUser.fxml", event, "Add User");
+
+        } catch (IOException e) {
+            showAlert("Navigation Error", "Could not navigate to Update User screen: " + e.getMessage());
+        }
+    }
+
+
+    // private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
+    //     Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+    //     Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    //     Scene scene = new Scene(root);
+    //     stage.setTitle(title);
+    //     stage.setScene(scene);
+    //     stage.show();
+    // }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        Object controller = loader.getController();
+        if (controller instanceof UserAwareController) {
+            ((UserAwareController) controller).setUser( usersTable.getSelectionModel().getSelectedItem());
+        }
+
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);
