@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -65,7 +67,10 @@ public class UpdateUserController implements UserAwareController {
         String name = nameField.getText();
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
-
+        if(username.isEmpty() || password.isEmpty() || name.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()) {
+            showAlert("Error", "All fields must be filled out.");
+            return;
+        }
         if (user != null) {
             user.updateUserName(username);
             user.updatePassword(password);
@@ -94,5 +99,13 @@ public class UpdateUserController implements UserAwareController {
     public void setUser(User user) {
         this.user = user;
         update();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
