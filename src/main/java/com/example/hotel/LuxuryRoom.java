@@ -7,8 +7,8 @@ public class LuxuryRoom extends Room {
     private boolean hasJacuzzi;
     private boolean hasPrivateBalcony;
 
-    LuxuryRoom(int capacity, float price, boolean booked, Date availableDate, String hotelName, String description, boolean hasJacuzzi, boolean hasBalcony) {
-        super(capacity,  price,  booked, availableDate, hotelName, description);
+    LuxuryRoom(int capacity, float price, boolean booked, Date availableDate, Hotel hotel, String description, boolean hasJacuzzi, boolean hasBalcony) {
+        super(capacity,  price,  booked, availableDate, hotel, description);
         this.hasJacuzzi = hasJacuzzi;
         this.hasBalcony = hasBalcony;
 

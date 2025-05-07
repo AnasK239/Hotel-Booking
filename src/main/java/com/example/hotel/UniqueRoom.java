@@ -6,10 +6,10 @@ public class UniqueRoom extends Room{
     private String uniqueFeature;
     private String theme;
 
-    UniqueRoom(int capacity, float price, boolean booked, Date availableDate, String hotelName, String description,
+    UniqueRoom(int capacity, float price, boolean booked, Date availableDate, Hotel hotel, String description,
                             String uniqueFeature, String theme) {
 
-        super(capacity, price,  booked,  availableDate,  hotelName,  description);
+        super(capacity, price,  booked,  availableDate,  hotel,  description);
         this.uniqueFeature = uniqueFeature;
         this.theme = theme;
 

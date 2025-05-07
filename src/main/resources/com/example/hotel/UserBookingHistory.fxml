@@ -7,19 +7,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.UserBookingHistoryController">
-    <VBox spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.hotel.UserBookingHistoryController">
+
+    <VBox prefWidth="620.0" spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 
         <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="All Bookings" />
 
-        <TableView fx:id="bookingsTable" prefHeight="500.0">
+        <TableView fx:id="bookingsTable" prefHeight="500.0" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="bookingIdColumn" prefWidth="138.0" text="Booking ID" />
-                <TableColumn fx:id="userColumn" prefWidth="178.0" text="User" />
-                <TableColumn fx:id="roomColumn" prefWidth="130.0" text="Room" />
-                <TableColumn fx:id="dateColumn" prefWidth="173.0" text="Date" />
+                <TableColumn fx:id="bookingIdColumn" prefWidth="100.0" text="Booking ID" />
+                <TableColumn fx:id="userColumn" prefWidth="120.0" text="User" />
+                <TableColumn fx:id="roomColumn" prefWidth="100.0" text="Room" />
+                <TableColumn fx:id="hotelColumn" prefWidth="130.0" text="Hotel" />
+                <TableColumn fx:id="dateColumn" prefWidth="160.0" text="Date" />
             </columns>
         </TableView>
-        <Button fx:id="backbtn" mnemonicParsing="false" onAction="#handlebackbtn" text="Back" />
+
+        <Button fx:id="backbtn" alignment="CENTER" onAction="#handlebackbtn" prefWidth="100" text="Back" />
     </VBox>
 </AnchorPane>
