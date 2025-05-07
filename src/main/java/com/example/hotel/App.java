@@ -20,6 +20,8 @@ public class App extends Application {
         Hotel h2 = new Hotel("Hotel2", "Location2", 4, "Description2", "1234567890", "adsa", "www.hotel2.com");
         Room r1 = new StandardRoom(0, 0, false, new Date(2023-1900, 10, 1), null, "King", true, "");
         Room r2 = new LuxuryRoom(1, 0, false, new Date(2023-1900, 10, 1), null, "Hotel1", true, true);
+        h1.addRoom(r1);
+        h1.addRoom(r2);
         Date checkInDate = new Date(2023-1900, 10, 1);
         Date checkInDate2 = new Date(2024-1900, 10, 1);
         Date checkOutDate = new Date(2023-1900, 10, 5);

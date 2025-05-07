@@ -90,7 +90,6 @@ public class customerController implements UserAwareController{
         }
     }
 
-
     @FXML
     private void handleManagePayment(ActionEvent event) {
         System.out.println("Manage Payment Methods clicked");
