@@ -36,10 +36,8 @@ public class PaymentController {
 
     @FXML
     public void initialize() {
-        paymentMethodToggleGroup.selectedToggleProperty().addListener((observable) -> {
-
-
-        });
+        paymentMethodToggleGroup.selectedToggleProperty().addListener(e ->
+                paymentMethodToggleGroup.selectToggle(paymentMethodToggleGroup.getSelectedToggle()));
     }
 
 
