@@ -95,7 +95,7 @@ public class customerController implements UserAwareController{
     private void handleManagePayment(ActionEvent event) {
         System.out.println("Manage Payment Methods clicked");
         try {
-            navigateToScreen("PaymentMethods.fxml", event, "Login");
+            navigateToScreen("PaymentMethods.fxml", event, "Payment Methods");
         } catch (IOException e) {
 
         }
