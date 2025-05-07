@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Room {
+public abstract class Room{
 
     private int ID;
     private int capacity;
@@ -24,7 +24,7 @@ public abstract class Room {
         this.availableDate = availableDate;
         this.hotelName = hotelName;
         this.description = description;
-        rooms.add(this); // Add the room to the static list on creation
+        rooms.add(this);// Add the room to the static list on creation
     }
 
     // Abstract Methods
@@ -93,6 +93,11 @@ public abstract class Room {
         booked == room.booked &&
         hotelName.equals(room.hotelName) &&
         description.equals(room.description));
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
     }
 
     public static List<Room> getAllRooms() {

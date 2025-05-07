@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PaymentController {
+public class PaymentController implements UserAwareController{
 
     @FXML
     private ImageView cardImageView;
@@ -34,8 +34,16 @@ public class PaymentController {
     @FXML
     private Button backbtn;
 
+    private Customer customer;
+
+    @Override
+    public void setUser(User user) {
+        this.customer = (Customer) user;
+        update();
+    }
+
     @FXML
-    public void initialize() {
+    public void update() {
         paymentMethodToggleGroup.selectedToggleProperty().addListener(e ->
                 paymentMethodToggleGroup.selectToggle(paymentMethodToggleGroup.getSelectedToggle()));
     }
@@ -55,6 +63,8 @@ public class PaymentController {
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
+        customerController controller = loader.getController();
+        controller.setUser(customer);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

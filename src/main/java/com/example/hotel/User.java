@@ -22,6 +22,9 @@ public abstract class User {
         users.add(this); // Add the user to the static list upon creation
     }
 
+    public abstract void updateProfile(String name, String userName, String email, String password, String phoneNumber);
+    public abstract void printUserDetails();
+
     void updateUserName(String userName) {
         this.userName = userName;
     }
@@ -55,7 +58,6 @@ public abstract class User {
     String getPhoneNumber() {
         return phoneNumber;
     }
-    public abstract void updateProfile(String name, String userName, String email, String password, String phoneNumber);
     @Override
     public String toString() {
         return "User{" +
@@ -68,7 +70,6 @@ public abstract class User {
                 '}';
     }
 
-    public abstract void printUserDetails();
     static List<User> getAllUsers() {
         return users;
     }

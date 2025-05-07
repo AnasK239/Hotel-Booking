@@ -1,5 +1,8 @@
 package com.example.hotel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Hotel {
     private String name;
     private String location;
@@ -8,6 +11,8 @@ public class Hotel {
     private String contactNumber;
     private String email;
     private String website;
+    private List<Room> rooms;
+    private static List<Hotel> hotels = new ArrayList<>();
 
     public Hotel(String name, String location, int rating, String description, String contactNumber, String email, String website) {
         this.name = name;
@@ -17,6 +22,8 @@ public class Hotel {
         this.contactNumber = contactNumber;
         this.email = email;
         this.website = website;
+        this.rooms = new ArrayList<>();
+        hotels.add(this);
     }
 
     // Getters and Setters
@@ -74,5 +81,22 @@ public class Hotel {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public static List<Hotel> getAllHotels() {
+        return hotels;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    void addRoom(Room room) {
+        rooms.add(room);
+    }
+
+    @Override
+    public String toString() {
+        return name; // or getHotelName() if the field is private
     }
 }
