@@ -106,7 +106,7 @@ public class ManageUsersController {
         User selected = usersTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             // Remove from the data model
-            User.getAllUsers().remove(selected);
+            User.removeUser(selected);
 
             // Remove from the ObservableList to update the UI
             usersList.remove(selected);

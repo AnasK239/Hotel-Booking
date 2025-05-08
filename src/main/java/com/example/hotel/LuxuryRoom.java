@@ -5,10 +5,9 @@ import java.util.List;
 public class LuxuryRoom extends Room {
     private boolean hasBalcony;
     private boolean hasJacuzzi;
-    private boolean hasPrivateBalcony;
 
-    LuxuryRoom(int capacity, float price, boolean booked, Date availableDate, Hotel hotel, String description, boolean hasJacuzzi, boolean hasBalcony) {
-        super(capacity,  price,  booked, availableDate, hotel, description);
+    LuxuryRoom(int capacity, float price, boolean booked, Hotel hotel, String description, boolean hasJacuzzi, boolean hasBalcony) {
+        super(capacity,  price,  booked, hotel, description);
         this.hasJacuzzi = hasJacuzzi;
         this.hasBalcony = hasBalcony;
 
@@ -20,23 +19,17 @@ public class LuxuryRoom extends Room {
     void setHasJacuzzi(boolean hasJacuzzi) {
         this.hasJacuzzi = hasJacuzzi;
     }
-    boolean hasPrivateBalcony() {
-        return hasPrivateBalcony;
+    boolean haseBalcony() {
+        return hasBalcony;
     }
-    void setHasPrivateBalcony(boolean hasPrivateBalcony) {
-        this.hasPrivateBalcony = hasPrivateBalcony;
+    void setHasBalcony(boolean hasBalcony) {
+        this.hasBalcony = hasBalcony;
     }
 
-
-    @Override
-    public void displayRoomDetails() {
-        // Set Text Fields in the UI to the Data
-        // Return type ?
-    }
 
     @Override
     public float calculateTotalPrice(int numberOfDays) {
-        return getPrice() * numberOfDays;
+        return getPrice() * numberOfDays * 1.5f;
     }
 
     @Override
@@ -47,5 +40,10 @@ public class LuxuryRoom extends Room {
         LuxuryRoom that = (LuxuryRoom) obj;
         return hasJacuzzi == that.hasJacuzzi &&
                 hasBalcony == that.hasBalcony;
+    }
+
+    @Override
+    public int getPriority() {
+        return 1;
     }
 }

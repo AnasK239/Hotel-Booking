@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,13 +23,13 @@ public class AvailableRoomsController implements UserAwareController{
     @FXML
     private TableView<Room> roomsTable;
     @FXML
+    private TableColumn<Room, String> hotelCol;
+    @FXML
     private TableColumn<Room, Integer> roomNumberCol;
     @FXML
-    private TableColumn<Room, String> roomTypeCol;
+    private TableColumn<Room, Room> roomTypeCol;
     @FXML
     private TableColumn<Room, Float> priceCol;
-    @FXML
-    private TableColumn<Room, Boolean> availabilityCol;
     @FXML
     private Button backbtn;
 
@@ -43,23 +44,30 @@ public class AvailableRoomsController implements UserAwareController{
     @FXML
     public void updateTable() {
 
+        hotelCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getHotel().getName())
+        );
+
         roomNumberCol.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getID()).asObject()
         );
 
         roomTypeCol.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getClass().getSimpleName())
+                new ReadOnlyObjectWrapper<>(cellData.getValue())
         );
+        roomTypeCol.setCellFactory(column -> new TableCell<>() {
+            @Override
+            protected void updateItem(Room room, boolean empty) {
+                super.updateItem(room, empty);
+                setText(empty || room == null ? "" : room.getClass().getSimpleName());
+            }
+        });
 
         priceCol.setCellValueFactory(cellData ->
                 new SimpleFloatProperty(cellData.getValue().getPrice()).asObject()
         );
 
-        availabilityCol.setCellValueFactory(cellData ->
-                new SimpleBooleanProperty(!cellData.getValue().isBooked())
-        );
-
-        // Set data - filter only available rooms
+        // Set data only available rooms
         ObservableList<Room> availableRooms = FXCollections.observableArrayList();
         for (Room r : Room.getAllRooms()) {
             if (!r.isBooked()) {
@@ -67,6 +75,11 @@ public class AvailableRoomsController implements UserAwareController{
             }
         }
         roomsTable.setItems(availableRooms);
+        roomTypeCol.setComparator(Room::compareTo);
+        roomsTable.getSortOrder().clear();
+        roomsTable.getSortOrder().add(roomTypeCol);
+        roomTypeCol.setSortType(TableColumn.SortType.ASCENDING);
+        roomsTable.sort();
     }
 
         public void handlebackbtn(ActionEvent event) throws IOException {

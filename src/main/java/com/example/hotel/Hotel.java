@@ -97,6 +97,6 @@ public class Hotel {
 
     @Override
     public String toString() {
-        return name; // or getHotelName() if the field is private
+        return name;
     }
 }

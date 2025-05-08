@@ -27,8 +27,6 @@ public class AddRoomController {
     @FXML
     private TextField roomDescription;
     @FXML
-    private DatePicker availableDatePicker;
-    @FXML
     private ComboBox<String> roomTypeComboBox;
     @FXML
     private Button createButton;
@@ -69,9 +67,6 @@ public class AddRoomController {
         roomTypeComboBox.setItems(FXCollections.observableArrayList(
                 Arrays.asList("Standard Room", "Unique Room", "Luxury Room")
         ));
-
-
-        availableDatePicker.setValue(LocalDate.now());
 
 
         roomTypeComboBox.setOnAction(e -> {
@@ -155,12 +150,6 @@ public class AddRoomController {
             }
 
 
-            LocalDate availableLocalDate = availableDatePicker.getValue();
-            if (availableLocalDate == null) {
-                availableLocalDate = LocalDate.now();
-            }
-            Date availableDate = java.sql.Date.valueOf(availableLocalDate);
-
             Room newRoom = null;
 
             switch (roomType) {
@@ -172,7 +161,7 @@ public class AddRoomController {
                     String bedType = bedTypeField.getText().trim();
                     boolean hasTV = hasTVCheckbox != null && hasTVCheckbox.isSelected();
 
-                    newRoom = new StandardRoom(capacity, price, false, availableDate, selectedHotel, bedType,
+                    newRoom = new StandardRoom(capacity, price, false, selectedHotel, bedType,
                             hasTV,
                             description
                     );
@@ -190,7 +179,7 @@ public class AddRoomController {
                     String uniqueFeature = uniqueFeatureField.getText().trim();
                     String theme = themeField.getText().trim();
 
-                    newRoom = new UniqueRoom(capacity, price, false, availableDate, selectedHotel, description,
+                    newRoom = new UniqueRoom(capacity, price, false, selectedHotel, description,
                             uniqueFeature,
                             theme
                     );
@@ -200,7 +189,7 @@ public class AddRoomController {
                     boolean hasJacuzzi = hasJacuzziCheckbox != null && hasJacuzziCheckbox.isSelected();
                     boolean hasBalcony = hasBalconyCheckbox != null && hasBalconyCheckbox.isSelected();
 
-                    newRoom = new LuxuryRoom(capacity, price, false, availableDate, selectedHotel, description,
+                    newRoom = new LuxuryRoom(capacity, price, false, selectedHotel, description,
                             hasJacuzzi,
                             hasBalcony
                     );
@@ -229,7 +218,6 @@ public class AddRoomController {
         roomCapacity.clear();
         roomPrice.clear();
         roomDescription.clear();
-        availableDatePicker.setValue(LocalDate.now());
         roomTypeComboBox.getSelectionModel().clearSelection();
 
         // Clear specific fields

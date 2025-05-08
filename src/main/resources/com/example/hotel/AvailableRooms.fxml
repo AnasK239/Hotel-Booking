@@ -15,10 +15,10 @@
 
         <TableView fx:id="roomsTable" prefHeight="400.0">
             <columns>
-                <TableColumn fx:id="roomNumberCol" prefWidth="140" text="Room Number" />
                 <TableColumn fx:id="roomTypeCol" prefWidth="140" text="Type" />
+                <TableColumn fx:id="roomNumberCol" prefWidth="140" text="Room Number" />
+                <TableColumn fx:id="hotelCol" prefWidth="140" text="Hotel" />
                 <TableColumn fx:id="priceCol" prefWidth="140" text="Price" />
-                <TableColumn fx:id="availabilityCol" prefWidth="199.0" text="Availability" />
             </columns>
         </TableView>
 

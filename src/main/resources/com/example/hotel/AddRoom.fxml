@@ -29,7 +29,6 @@
                    <TextField fx:id="roomCapacity" promptText="Capacity" />
                    <TextField fx:id="roomPrice" promptText="Price" />
                    <TextField fx:id="roomDescription" promptText="Room Description" />
-                   <DatePicker fx:id="availableDatePicker" maxWidth="Infinity" promptText="Available Date" />
                <AnchorPane prefHeight="66.0" prefWidth="570.0">
                   <children>
          
