@@ -25,6 +25,8 @@ public class ManageRoomsController implements UserAwareController {
 
     @FXML
     private TableColumn<Room, String> roomNumberColumn;
+    @FXML
+    private TableColumn<Room, String> hotelnameColumn;
 
     @FXML
     private TableColumn<Room, String> roomTypeColumn;
@@ -37,6 +39,7 @@ public class ManageRoomsController implements UserAwareController {
 
     @FXML
     private Button addRoomBtn;
+
 
     @FXML
     private Button delRoomBtn;
@@ -54,6 +57,9 @@ public class ManageRoomsController implements UserAwareController {
 
         roomNumberColumn.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getID()).asString()
+        );
+        hotelnameColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getHotel().getName())
         );
 
         roomTypeColumn.setCellValueFactory(cellData ->

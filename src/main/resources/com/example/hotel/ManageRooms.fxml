@@ -15,9 +15,10 @@
 
         <TableView fx:id="roomsTable" prefHeight="400.0">
             <columns>
-                <TableColumn fx:id="roomNumberColumn" prefWidth="119.99999845027924" text="Room Number" />
-                <TableColumn fx:id="roomTypeColumn" prefWidth="219.19995880126953" text="Room Type" />
-                <TableColumn fx:id="availabilityColumn" minWidth="0.0" prefWidth="196.79995727539062" text="Available" />
+            <TableColumn fx:id="hotelnameColumn" prefWidth="132.0" text="Hotel Name" />
+                <TableColumn fx:id="roomNumberColumn" prefWidth="147.0" text="Room Number" />
+                <TableColumn fx:id="roomTypeColumn" prefWidth="149.0" text="Room Type" />
+                <TableColumn fx:id="availabilityColumn" minWidth="0.0" prefWidth="191.0" text="Available" />
             </columns>
         </TableView>
 
