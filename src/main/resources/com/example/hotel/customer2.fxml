@@ -123,40 +123,6 @@
                 -fx-cursor: hand;
             </style>
         </Button>
-        
-        <Button fx:id="managePaymentButton" maxWidth="Infinity" onAction="#handleManagePayment" styleClass="dashboard-button">
-            <graphic>
-                <HBox alignment="CENTER_LEFT" spacing="20">
-                    <StackPane minHeight="50" minWidth="50" style="-fx-background-color: #1F3B73; -fx-background-radius: 10;" styleClass="icon-container">
-                        <ImageView fitHeight="72.0" fitWidth="56.0" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Payment.png" />
-                     </image></ImageView>
-                    </StackPane>
-
-                    <VBox>
-                        <Label style="-fx-font-size: 24;" styleClass="button-label" text="Manage Payment" textFill="#F0E6D2">
-                            <font>
-                                <Font size="24.0" />
-                            </font>
-                        </Label>
-                        <Label style="-fx-font-size: 24;" styleClass="button-label" text="Methods" textFill="#F0E6D2">
-                            <font>
-                                <Font size="24.0" />
-                            </font>
-                        </Label>
-                    </VBox>
-                </HBox>
-            </graphic>
-            <padding>
-                <Insets bottom="15" left="15" right="15" top="15" />
-            </padding>
-            <style>
-                -fx-background-color: #1E3A70;
-                -fx-background-radius: 15;
-                -fx-cursor: hand;
-            </style>
-        </Button>
 
         <Region VBox.vgrow="ALWAYS" />
 

@@ -6,13 +6,10 @@ public class UniqueRoom extends Room{
     private String uniqueFeature;
     private String theme;
 
-    UniqueRoom(int capacity, float price, boolean booked, Date availableDate, Hotel hotel, String description,
-                            String uniqueFeature, String theme) {
-
-        super(capacity, price,  booked,  availableDate,  hotel,  description);
+    UniqueRoom(int capacity, float price, boolean booked, Hotel hotel, String description, String uniqueFeature, String theme) {
+        super(capacity, price,  booked, hotel, description);
         this.uniqueFeature = uniqueFeature;
         this.theme = theme;
-
     }
 
     // Setters and Getters
@@ -29,24 +26,23 @@ public class UniqueRoom extends Room{
         this.theme = theme;
     }
 
-    // Methods
-    @Override
-    public void displayRoomDetails() {
-        // Same as the other one
-    }
 
     @Override
     public float calculateTotalPrice(int numberOfDays) {
-        return getPrice() * numberOfDays * 1.5f;
+        return getPrice() * numberOfDays * 1.3f;
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof UniqueRoom)) return false;
         if (!super.equals(obj)) return false;
         UniqueRoom that = (UniqueRoom) obj;
         return uniqueFeature.equals(that.uniqueFeature) && theme.equals(that.theme);
+    }
+
+    @Override
+    public int getPriority() {
+        return 2;
     }
 }

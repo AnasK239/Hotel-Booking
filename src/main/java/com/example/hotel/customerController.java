@@ -20,9 +20,6 @@ public class customerController implements UserAwareController{
     private Button viewHistoryButton;
 
     @FXML
-    private Button managePaymentButton;
-
-    @FXML
     private Button logOutButton;
 
     private Customer customer;
@@ -50,7 +47,6 @@ public class customerController implements UserAwareController{
         setButtonHoverEffect(viewRoomsButton, originalStyle, hoverStyle);
         setButtonHoverEffect(addBookingButton, originalStyle, hoverStyle);
         setButtonHoverEffect(viewHistoryButton, originalStyle, hoverStyle);
-        setButtonHoverEffect(managePaymentButton, originalStyle, hoverStyle);
         setButtonHoverEffect(logOutButton, originalStyle, hoverStyle);
     }
 
@@ -85,16 +81,6 @@ public class customerController implements UserAwareController{
         System.out.println("View Booking History clicked");
         try {
             navigateToScreen("UserBookingHistory.fxml", event, "Booking History");
-        } catch (IOException e) {
-
-        }
-    }
-
-    @FXML
-    private void handleManagePayment(ActionEvent event) {
-        System.out.println("Manage Payment Methods clicked");
-        try {
-            navigateToScreen("PaymentMethods.fxml", event, "Payment Methods");
         } catch (IOException e) {
 
         }

@@ -3,41 +3,35 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Room{
+public abstract class Room implements Comparable<Room>{
 
-    private int ID;
+    private final int ID;
     private int capacity;
     private float price;
     private boolean booked;
-    private Date availableDate;
     private final Hotel hotel;
     private String description;
 
-    // Static list to hold all rooms
     private static List<Room> rooms = new ArrayList<>();
     
-    protected Room(int capacity, float price, boolean booked, Date availableDate, Hotel hotel, String description) {
-        this.ID = rooms.size();
+    protected Room(int capacity, float price, boolean booked, Hotel hotel, String description) {
+        this.ID = hotel.getRooms().size() + 1;
         this.capacity = capacity;
         this.price = price;
         this.booked = booked;
-        this.availableDate = availableDate;
         this.hotel = hotel;
         this.description = description;
-        rooms.add(this);// Add the room to the static list on creation
+        rooms.add(this);
         hotel.addRoom(this);
     }
 
     // Abstract Methods
-    public abstract void displayRoomDetails();
     public abstract float calculateTotalPrice(int numberOfDays);
+    protected abstract int getPriority();
 
     // Setters and Getters
     int getID() {
         return ID;
-    }
-    void setID(int ID) {
-        this.ID = ID;
     }
 
     int getCapacity() {
@@ -61,13 +55,6 @@ public abstract class Room{
         this.booked = booked;
     }
 
-    Date getAvailableDate() {
-        return availableDate;
-    }
-    void setAvailableDate(Date availableDate) {
-        this.availableDate = availableDate;
-    }
-
     Hotel getHotel() {
         return hotel;
     }
@@ -85,9 +72,9 @@ public abstract class Room{
         if (obj == null || getClass() != obj.getClass()) return false;
         Room room = (Room) obj;
         return(
-        ID == room.ID && 
-        capacity == room.capacity && 
-        Float.compare(room.price, price) == 0 && 
+        ID == room.ID &&
+        capacity == room.capacity &&
+        Float.compare(room.price, price) == 0 &&
         booked == room.booked &&
         hotel.equals(room.hotel) &&
         description.equals(room.description));
@@ -95,11 +82,16 @@ public abstract class Room{
 
     @Override
     public String toString() {
-        return getClass().getSimpleName();
+        return "Room " + getID() + " - " + getClass().getSimpleName();
     }
 
     public static List<Room> getAllRooms() {
         return rooms;
+    }
+
+    @Override
+    public int compareTo(Room other) {
+        return Integer.compare(this.getPriority(), other.getPriority());
     }
 
 }

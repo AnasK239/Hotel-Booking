@@ -103,11 +103,7 @@ public class UpdateUserController implements UserAwareController {
         }
         
         if (user != null) {
-            user.updateUserName(username);
-            user.updatePassword(password);
-            user.updateName(name);
-            user.updateEmail(email);
-            user.updatePhoneNumber(phoneNumber);
+            user.updateProfile(name, username, email, password, phoneNumber);
         }
 
         try {

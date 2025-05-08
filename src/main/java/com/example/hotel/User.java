@@ -3,7 +3,7 @@ package com.example.hotel;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class User {
+public class User {
     private final long ID;
     private String name;
     private String userName;
@@ -22,8 +22,13 @@ public abstract class User {
         users.add(this); // Add the user to the static list upon creation
     }
 
-    public abstract void updateProfile(String name, String userName, String email, String password, String phoneNumber);
-    public abstract void printUserDetails();
+    public void updateProfile(String name, String userName, String email, String password, String phoneNumber) {
+        this.updateName(name);
+        this.updateUserName(userName);
+        this.updateEmail(email);
+        this.updatePassword(password);
+        this.updatePhoneNumber(phoneNumber);
+    }
 
     void updateUserName(String userName) {
         this.userName = userName;
@@ -76,9 +81,6 @@ public abstract class User {
     static void removeUser(User user) {
         users.remove(user);
     }
-    static void clearUsers() {
-        users.clear();
-    }
     static boolean checkUserRegistered(String u) {
         for (User user : users) {
             if (u.equals(user.getUserName())){
@@ -87,37 +89,6 @@ public abstract class User {
         }
         return false;
     }
-    static void printUserCount() {
-        System.out.println("Total number of users: " + users.size());
-    }
-    static void printUserDetailsByID(long ID) {
-        for (User user : users) {
-            if (user.getID() == ID) {
-                System.out.println(user);
-                return;
-            }
-        }
-        System.out.println("User with ID " + ID + " not found.");
-    }
-    static void printUserDetailsByName(String name) {
-        for (User user : users) {
-            if (user.getName().equalsIgnoreCase(name)) {
-                System.out.println(user);
-                return;
-            }
-        }
-        System.out.println("User with name " + name + " not found.");
-    }
-    static void printUserDetailsByEmail(String email) {
-        for (User user : users) {
-            if (user.getEmail().equalsIgnoreCase(email)) {
-                System.out.println(user);
-                return;
-            }
-        }
-        System.out.println("User with email " + email + " not found.");
-    }
-
 
 
 }

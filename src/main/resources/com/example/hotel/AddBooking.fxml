@@ -37,6 +37,11 @@
                 <Label text="Check-out Date:" prefWidth="120" />
                 <DatePicker fx:id="checkOutDatePicker" prefWidth="300" />
             </HBox>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Estimated Price:" prefWidth="120" />
+                <Label fx:id="priceLabel" text="-" style="-fx-font-weight: bold;" />
+            </HBox>
         </VBox>
 
         <HBox spacing="20" alignment="CENTER">

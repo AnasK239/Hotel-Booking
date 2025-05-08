@@ -7,10 +7,8 @@ public class StandardRoom extends Room{
     private String bedType;
     private boolean hasTV;
 
-    StandardRoom(int capacity, float price, boolean booked, Date availableDate, Hotel hotel,
-                    String bedType, boolean hasTV, String description) {
-
-        super(capacity, price,  booked,  availableDate,  hotel,  description);
+    StandardRoom(int capacity, float price, boolean booked, Hotel hotel, String bedType, boolean hasTV, String description) {
+        super(capacity, price,  booked, hotel,  description);
         this.bedType = bedType;
         this.hasTV = hasTV;
     }
@@ -29,11 +27,6 @@ public class StandardRoom extends Room{
         this.hasTV = hasTV;
     }
 
-    // Methods
-    @Override
-    public void displayRoomDetails() {
-        // Waiting implementation
-    }
 
     @Override
     public float calculateTotalPrice(int numberOfDays) {
@@ -41,8 +34,7 @@ public class StandardRoom extends Room{
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof StandardRoom)) return false;
         if (!super.equals(obj)) return false;
@@ -51,5 +43,8 @@ public class StandardRoom extends Room{
                 bedType.equals(that.bedType);
     }
 
-
+    @Override
+    public int getPriority() {
+        return 3;
+    }
 }

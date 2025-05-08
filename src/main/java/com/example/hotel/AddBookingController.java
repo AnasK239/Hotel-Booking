@@ -18,6 +18,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +34,8 @@ public class AddBookingController implements UserAwareController{
     private DatePicker checkOutDatePicker;
     @FXML
     private Label statusLabel;
+    @FXML
+    private Label priceLabel;
     @FXML
     private Button backbtn;
     @FXML
@@ -57,6 +60,10 @@ public class AddBookingController implements UserAwareController{
                 roomComboBox.setItems(FXCollections.observableArrayList(availableRooms));
             }
         });
+
+        checkInDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> updatePriceLabel());
+        checkOutDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> updatePriceLabel());
+        roomComboBox.valueProperty().addListener((obs, oldVal, newVal) -> updatePriceLabel());
     }
 
     @FXML
@@ -72,24 +79,56 @@ public class AddBookingController implements UserAwareController{
             return;
         }
 
-        if (checkIn.isBefore(LocalDate.now()) || checkOut.isBefore(LocalDate.now())) {
-            statusLabel.setText("Dates cannot be in the past.");
-            statusLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
-
-        if (checkIn.isAfter(checkOut)) {
-            statusLabel.setText("Check-in date cannot be after check-out date.");
-            statusLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
-
         Date checkInDate = java.sql.Date.valueOf(checkIn);
         Date checkOutDate = java.sql.Date.valueOf(checkOut);
 
         customer.bookRoom(hotel, room, checkInDate, checkOutDate);
         room.setBooked(true);
+        int points = customer.getLoyaltyPoints();
+        customer.redeemLoyaltyPoints(points);
+        int days = (int) ChronoUnit.DAYS.between(checkIn, checkOut) + 1;
+        int pointsPerDay;
+        if (room instanceof LuxuryRoom) {
+            pointsPerDay = 5;
+        } else if (room instanceof UniqueRoom) {
+            pointsPerDay = 3;
+        } else {
+            pointsPerDay = 2;
+        }
+        int totalPoints = days * pointsPerDay;
+        customer.addLoyaltyPoints(totalPoints);
+
         navigateToScreen("customer2.fxml", event, "Dashboard");
+    }
+
+    private void updatePriceLabel() {
+        Room selectedRoom = roomComboBox.getValue();
+        LocalDate checkIn = checkInDatePicker.getValue();
+        LocalDate checkOut = checkOutDatePicker.getValue();
+
+        if (selectedRoom == null || checkIn == null || checkOut == null) {
+            priceLabel.setText("-");
+            return;
+        }
+        if (checkIn.isBefore(LocalDate.now()) || checkOut.isBefore(LocalDate.now())) {
+            statusLabel.setText("Dates cannot be in the past.");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            priceLabel.setText("-");
+            return;
+        }
+        if (checkIn.isAfter(checkOut)) {
+            statusLabel.setText("Check-in date cannot be after check-out date.");
+            statusLabel.setStyle("-fx-text-fill: red;");
+            priceLabel.setText("-");
+            return;
+        }
+
+        int days = (int) ChronoUnit.DAYS.between(checkIn, checkOut) + 1;
+        float basePrice = selectedRoom.calculateTotalPrice(days);
+        int points = customer.getLoyaltyPoints();
+        float discountRate = points / 5f / 100f;
+        float finalPrice = basePrice * (1 - discountRate);
+        priceLabel.setText(String.format("$%.2f", finalPrice));
     }
 
     @FXML
