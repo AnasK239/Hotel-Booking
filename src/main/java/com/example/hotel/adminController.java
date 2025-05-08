@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-public class adminController {
+public class adminController implements UserAwareController {
     @FXML
     private Button manageRoomsButton;
 
@@ -24,12 +24,18 @@ public class adminController {
 
     @FXML
     private Button logOutButton;
+    private Admin admin;
+
+    @Override
+    public void setUser(User user) {
+        this.admin = (Admin) user;
+    }
 
 
     @FXML
     private void initialize() {
 
-        System.out.println("Customer Dashboard initialized");
+        System.out.println("Admin Dashboard initialized");
 
         setupButtonHoverEffects();
     }
@@ -103,7 +109,12 @@ public class adminController {
         }
     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        Object controller = loader.getController();
+        if (controller instanceof UserAwareController) {
+            ((UserAwareController) controller).setUser(admin);
+        }
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

@@ -23,7 +23,7 @@
       <TextField fx:id="loginVisiblePasswordField" managed="false" promptText="Password" style="-fx-background-radius: 10; -fx-padding: 8;" visible="false" />
       <PasswordField fx:id="loginPasswordField" promptText="Password" style="-fx-background-radius: 10; -fx-padding: 8;" />
     </StackPane>
-      <CheckBox fx:id="showPasswordCheckBox" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="17.0" prefWidth="107.0" text="show password" onAction="#togglePasswordVisibility" />
+      <CheckBox fx:id="showPasswordCheckBox" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="17.0" prefWidth="107.0" text="Show Password" onAction="#togglePasswordVisibility" />
 
     <HBox alignment="CENTER" spacing="10">
       <Button fx:id="doLoginBtn" onAction="#onDoLogin" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 8 20;" text="Login" />

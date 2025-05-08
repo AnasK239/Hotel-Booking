@@ -16,7 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddUserController {
+public class AddUserController implements UserAwareController{
       @FXML
     private CheckBox adminCheckBox;
 
@@ -54,6 +54,13 @@ public class AddUserController {
     
     @FXML
     private CheckBox showPasswordCheckBox;
+
+    private Admin admin;
+
+    @Override
+    public void setUser(User user) {
+        this.admin = (Admin) user;
+    }
 
 
     @FXML
@@ -145,7 +152,10 @@ public class AddUserController {
 
     
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        ManageUsersController controller= loader.getController();
+        controller.setUser(admin);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

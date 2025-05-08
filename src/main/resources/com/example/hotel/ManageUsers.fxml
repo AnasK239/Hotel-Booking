@@ -16,7 +16,7 @@
     <VBox spacing="15.0" AnchorPane.bottomAnchor="10.0"
           AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 
-        <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="User Management" />
+        <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="Users Management" />
 
         <TableView fx:id="usersTable" prefHeight="400.0">
             <columns>

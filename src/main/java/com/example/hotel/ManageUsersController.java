@@ -18,7 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 
-public class ManageUsersController {
+public class ManageUsersController implements UserAwareController{
     @FXML
     private Button backbtn;
 
@@ -47,6 +47,13 @@ public class ManageUsersController {
     @FXML
     private ObservableList<User> usersList;
 
+    private Admin admin;
+
+    @Override
+    public void setUser(User user) {
+        this.admin = (Admin) user;
+    }
+
     public void initialize() {
         // Set up cell value factories
         emailColumn.setCellValueFactory(cellData ->
@@ -72,7 +79,7 @@ public class ManageUsersController {
     @FXML
     public void handlebackbtn(ActionEvent event) {
         try {
-            navigateToScreen("Admin.fxml", event, "Login");
+            navigateToScreenBck("Admin.fxml", event, "Admin Dashboard");
         } catch (IOException e) {
             showAlert("Navigation Error", "Could not navigate to Admin screen: " + e.getMessage());
         }
@@ -85,14 +92,7 @@ public class ManageUsersController {
         User selected = usersTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             try {
-
-                // You might want to pass the selected user to the update screen
-
-                // controller for userUpdate.fxml that accepts a user
-                // UserUpdateController controller = loader.getController();
-                // controller.setUser(selected);
-                navigateToScreen("userUpdate.fxml", event, "UpdateUser");
-
+                navigateToScreen("userUpdate.fxml", event, "Update User");
             } catch (IOException e) {
                 showAlert("Navigation Error", "Could not navigate to Update User screen: " + e.getMessage());
             }
@@ -111,7 +111,7 @@ public class ManageUsersController {
             // Remove from the ObservableList to update the UI
             usersList.remove(selected);
 
-            System.out.println("User removed: " + selected.getUserName());
+            System.out.println("User Removed: " + selected.getUserName());
         } else {
             showAlert("Selection Error", "No user selected for removal.");
         }
@@ -121,35 +121,36 @@ public class ManageUsersController {
     @FXML
     void handleAddUser(ActionEvent event) {
         try {
-
-            // You might want to pass the selected user to the update screen
-
-            // controller for userUpdate.fxml that accepts a user
-            // UserUpdateController controller = loader.getController();
-            // controller.setUser(selected);
             navigateToScreen("AddUser.fxml", event, "Add User");
-
         } catch (IOException e) {
             showAlert("Navigation Error", "Could not navigate to Update User screen: " + e.getMessage());
         }
     }
 
 
-    // private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-    //     Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-    //     Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-    //     Scene scene = new Scene(root);
-    //     stage.setTitle(title);
-    //     stage.setScene(scene);
-    //     stage.show();
-    // }
+     private void navigateToScreenBck(String fxmlFile, ActionEvent event, String title) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+         Parent root = loader.load();
+         adminController controller= loader.getController();
+         controller.setUser(admin);
+         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+         Scene scene = new Scene(root);
+         stage.setTitle(title);
+         stage.setScene(scene);
+         stage.show();
+     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
         Object controller = loader.getController();
-        if (controller instanceof UserAwareController) {
-            ((UserAwareController) controller).setUser( usersTable.getSelectionModel().getSelectedItem());
+        if (controller instanceof UpdateUserController) {
+            ((UpdateUserController) controller).setUser( usersTable.getSelectionModel().getSelectedItem());
+            ((UpdateUserController) controller).setAdmin( admin );
         }
+        if (controller instanceof  AddUserController) {
+            ((AddUserController) controller).setUser( admin );
+        }
+
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

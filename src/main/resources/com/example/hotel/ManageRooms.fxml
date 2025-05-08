@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="640" prefWidth="640" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.ManageRoomsController">
     <VBox spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 
-        <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="Room Management" />
+        <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="Rooms Management" />
 
         <TableView fx:id="roomsTable" prefHeight="400.0">
             <columns>

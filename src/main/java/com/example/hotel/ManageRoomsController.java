@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ManageRoomsController {
+public class ManageRoomsController implements UserAwareController {
     @FXML
     private TableView<Room> roomsTable;
 
@@ -41,6 +42,13 @@ public class ManageRoomsController {
     private Button delRoomBtn;
 
     private ObservableList<Room> roomsList;
+    private Admin admin;
+
+    @Override
+    public void setUser(User user) {
+        this.admin = (Admin) user;
+    }
+
 
     public void initialize() {
 
@@ -92,7 +100,7 @@ public class ManageRoomsController {
 
             roomsList.remove(selected);
 
-            System.out.println("User removed: )");
+            System.out.println("Room Removed");
         } else {
 
         }
@@ -101,13 +109,18 @@ public class ManageRoomsController {
     @FXML
     public void handleBackBtn(ActionEvent event) {
         try {
-            navigateToScreen("Admin.fxml", event, "Login");
+            navigateToScreen("Admin.fxml", event, "Admin Dashboard");
         } catch (IOException e) {
 
         }
     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        Object controller = loader.getController();
+        if (controller instanceof UserAwareController) {
+            ((UserAwareController) controller).setUser(admin);
+        }
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

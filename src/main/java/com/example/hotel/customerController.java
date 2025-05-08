@@ -85,6 +85,15 @@ public class customerController implements UserAwareController{
 
         }
     }
+    @FXML
+    private void handleuserinfo(ActionEvent event) {
+        System.out.println("User Info clicked");
+        try {
+            navigateToScreen("UserInfo.fxml", event, "User Information");
+        } catch (IOException e) {
+
+        }
+    }
 
     @FXML
     private void handleLogOut(ActionEvent event) {
