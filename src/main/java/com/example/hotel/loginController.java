@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,14 +24,21 @@ public class loginController {
     @FXML
     public Button backFromLoginBtn;
 
+    @FXML 
+    private PasswordField loginPasswordField;
+
+    @FXML 
+    private TextField loginVisiblePasswordField;
+
+    @FXML 
+    private CheckBox showPasswordCheckBox;
+
     @FXML
     private Button doLoginBtn;
 
     @FXML
     private StackPane loginPane;
 
-    @FXML
-    private PasswordField loginPasswordField;
 
     @FXML
     private TextField loginUsernameField;
@@ -47,8 +55,11 @@ public class loginController {
 
     public void onDoLogin(ActionEvent event) throws IOException {
         List<User> all = User.getAllUsers();
+        String password = showPasswordCheckBox.isSelected()
+        ? loginVisiblePasswordField.getText()
+        : loginPasswordField.getText();
         for (User u : all){
-            if (u.getUserName().equals(loginUsernameField.getText()) && u.getPassword().equals(loginPasswordField.getText())) {
+            if (u.getUserName().equals(loginUsernameField.getText()) && u.getPassword().equals(password)) {
                 if (u instanceof Customer) {
                     navigateToScreenFwd("customer2.fxml", event, "Dashboard", u);
                 }
@@ -60,6 +71,23 @@ public class loginController {
         errorLabel.setVisible(true);
 
 
+    }
+
+    @FXML
+    private void togglePasswordVisibility() {
+        if (showPasswordCheckBox.isSelected()) {
+            loginVisiblePasswordField.setText(loginPasswordField.getText());
+            loginVisiblePasswordField.setVisible(true);
+            loginVisiblePasswordField.setManaged(true);
+            loginPasswordField.setVisible(false);
+            loginPasswordField.setManaged(false);
+        } else {
+            loginPasswordField.setText(loginVisiblePasswordField.getText());
+            loginPasswordField.setVisible(true);
+            loginPasswordField.setManaged(true);
+            loginVisiblePasswordField.setVisible(false);
+            loginVisiblePasswordField.setManaged(false);
+        }
     }
 
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {

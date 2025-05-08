@@ -47,6 +47,15 @@ public class AddUserController {
     @FXML
     private TextField usernameField;
 
+    
+    @FXML
+    private TextField VisiblePasswordField;
+
+    
+    @FXML
+    private CheckBox showPasswordCheckBox;
+
+
     @FXML
     void handleAdminToggle(ActionEvent event) {
         boolean isAdmin = adminCheckBox.isSelected();
@@ -66,31 +75,71 @@ public class AddUserController {
     @FXML
     void handleCreate(ActionEvent event) {
         String username = usernameField.getText();
-        String password = passwordField.getText();
+        String password = showPasswordCheckBox.isSelected()
+        ? VisiblePasswordField.getText()
+        : passwordField.getText();
         String name = nameField.getText();
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
 
         if(username.isEmpty() || password.isEmpty() || name.isEmpty() || email.isEmpty() || phoneNumber.isEmpty()) {
-            // Handle empty fields (e.g., show an error message)
+            showAlert("field empty", "Please fill all fields");
             return;
         }
         if (User.checkUserRegistered(username)) {
             showAlert("Username is used", "Username is used choose another one");
             return;
         }
+        // Check if the username is numbers only
+        if (username.matches("\\d+") || email.matches("\\d+") || name.matches("\\d+")) {
+            showAlert("Invalid field", "fields cannot be numbers only.");
+            return;
+        }
+        // Check if the username first char is number
+        if (Character.isDigit(username.charAt(0)) || Character.isDigit(email.charAt(0)) || Character.isDigit(name.charAt(0))) {
+            showAlert("Invalid field", "field cannot start with a number.");
+            return;
+        }
+        // check if password is less than 8 characters
+        if (password.length() < 8) {
+            showAlert("Invalid Password", "Password must be at least 8 characters long.");
+            return;
+        }
+        //check if valid email
+        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            showAlert("Invalid Email", "Email is not valid.");
+            return;
+        }
+        
         if (adminCheckBox.isSelected()) {
             String role = roleField.getText();
             String department = departmentField.getText();
-            new Admin(username, password, name, email, phoneNumber, role, department);
+            new Admin(name,  username, email,password, phoneNumber, role, department);
         } else {
-            new Customer(username, password, name, email, phoneNumber);
+            new Customer( name, username, email, password, phoneNumber);
         }
 
         try {
             navigateToScreen("ManageUsers.fxml", event, "Manage Users");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void togglePasswordVisibility(ActionEvent event) {
+        if (showPasswordCheckBox.isSelected()) {
+            VisiblePasswordField.setText(passwordField.getText());
+            VisiblePasswordField.setVisible(true);
+            VisiblePasswordField.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+        } else {
+            passwordField.setText(VisiblePasswordField.getText());
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+            VisiblePasswordField.setVisible(false);
+            VisiblePasswordField.setManaged(false);
         }
     }
 

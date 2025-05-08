@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -47,6 +48,14 @@ public class RegisterController {
     private Label errorLabel;
 
     @FXML
+    private TextField VisiblePasswordField;
+
+    
+    @FXML
+    private CheckBox showPasswordCheckBox;
+
+
+    @FXML
     public void onDoBack(ActionEvent event) throws IOException {
         navigateToScreen("welcome.fxml", event, "Hotel Booking System");
     }
@@ -56,31 +65,85 @@ public class RegisterController {
         String name = regNameField.getText().trim();
         String username = regUsernameField.getText().trim();
         String email = regEmailField.getText().trim();
-        String password = regPasswordField.getText().trim();
+        String password =  showPasswordCheckBox.isSelected()
+        ? VisiblePasswordField.getText()
+        : regPasswordField.getText();
         String phoneText = regPhoneNumberField.getText().trim();
 
         // Check if any are empty
         if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || phoneText.isEmpty()) {
             errorLabel.setText("Fields cannot be empty");
             errorLabel.setVisible(true);
+            return;
         }
-        else {
-            try {
-                long input = Long.parseLong(regPhoneNumberField.getText());
-                if (!User.checkUserRegistered(regUsernameField.getText())){
-                    User u = new Customer(regNameField.getText(), regUsernameField.getText(), regEmailField.getText(), regPasswordField.getText(), regPhoneNumberField.getText());
-                    navigateToScreen("login.fxml", event, "Dashboard");
-                }
-                errorLabel.setText("Username already exists");
-                errorLabel.setVisible(true);
-
-            } catch (NumberFormatException e) {
-                errorLabel.setText("Phone number must be a valid number");
-                errorLabel.setVisible(true);
+        if (User.checkUserRegistered(username)) {
+            // showAlert("Username is used", "Username is used choose another one");
+            errorLabel.setText("Username is used choose another one");
+            errorLabel.setVisible(true);
+            return;
+        }
+        // Check if the username is numbers only
+        if (username.matches("\\d+") || email.matches("\\d+") || name.matches("\\d+")) {
+            // showAlert("Invalid Username", "Username cannot be numbers only.");
+            errorLabel.setText("fields cannot be numbers only.");
+            errorLabel.setVisible(true);
+            return;
+        }
+        // Check if the username first char is number
+        if (Character.isDigit(username.charAt(0)) || Character.isDigit(email.charAt(0)) || Character.isDigit(name.charAt(0))) {
+            // showAlert("Invalid field", "fields cannot start with a number.");
+            errorLabel.setText("fields cannot start with a number.");
+            errorLabel.setVisible(true);
+            return;
+        }
+        // check if password is less than 8 characters
+        if (password.length() < 8) {
+            // showAlert("Invalid Password", "Password must be at least 8 characters long.");
+            errorLabel.setText("Password must be at least 8 characters long.");
+            errorLabel.setVisible(true);
+            return;
+        }
+        //check if valid email
+        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            // showAlert("Invalid Email", "Email is not valid.");
+            errorLabel.setText("Email is not valid.");
+            errorLabel.setVisible(true);
+            return;
+        }
+        
+        try {
+            long input = Long.parseLong(regPhoneNumberField.getText());
+            if (!User.checkUserRegistered(regUsernameField.getText())){
+                User u = new Customer(regNameField.getText(), regUsernameField.getText(), regEmailField.getText(), regPasswordField.getText(), regPhoneNumberField.getText());
+                navigateToScreen("login.fxml", event, "Dashboard");
             }
+            errorLabel.setText("Username already exists");
+            errorLabel.setVisible(true);
+
+        } catch (NumberFormatException e) {
+            errorLabel.setText("Phone number must be a valid number");
+            errorLabel.setVisible(true);
         }
+        
 
 
+    }
+
+    @FXML
+    void togglePasswordVisibility(ActionEvent event) {
+        if (showPasswordCheckBox.isSelected()) {
+            VisiblePasswordField.setText(regPasswordField.getText());
+            VisiblePasswordField.setVisible(true);
+            VisiblePasswordField.setManaged(true);
+            regPasswordField.setVisible(false);
+            regPasswordField.setManaged(false);
+        } else {
+            regPasswordField.setText(VisiblePasswordField.getText());
+            regPasswordField.setVisible(true);
+            regPasswordField.setManaged(true);
+            VisiblePasswordField.setVisible(false);
+            VisiblePasswordField.setManaged(false);
+        }
     }
 
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {

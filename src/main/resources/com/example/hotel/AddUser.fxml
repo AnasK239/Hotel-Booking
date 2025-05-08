@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="640.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hotel.AddUserController">
+<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.AddUserController">
 
-    <VBox alignment="CENTER" spacing="20.0"
-          AnchorPane.topAnchor="30.0"
-          AnchorPane.bottomAnchor="30.0"
-          AnchorPane.leftAnchor="30.0"
-          AnchorPane.rightAnchor="30.0"
-          style="-fx-background-color: #f4f6fa;">
+    <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f4f6fa;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
 
-        <Label text="Add New User"
-               style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" />
+        <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="Add New User" />
 
         <VBox spacing="15.0" style="-fx-padding: 20px; -fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
 
             <TextField fx:id="nameField" promptText="Full Name" />
             <TextField fx:id="usernameField" promptText="Username" />
             <TextField fx:id="emailField" promptText="Email" />
-            <PasswordField fx:id="passwordField" promptText="Password" />
+         <AnchorPane prefHeight="0.0" prefWidth="540.0">
+            <children>
+                  <PasswordField fx:id="passwordField" layoutY="2.0" prefHeight="25.0" prefWidth="428.0" promptText="Password" />
+               <CheckBox fx:id="showPasswordCheckBox" layoutX="434.0" layoutY="6.0" mnemonicParsing="false" onAction="#togglePasswordVisibility" text="show Password" />
+               <TextField fx:id="VisiblePasswordField" layoutY="2.0" prefHeight="25.0" prefWidth="428.0" promptText="Password" visible="false" />
+            </children>
+         </AnchorPane>
             <TextField fx:id="phoneNumberField" promptText="Phone Number" />
 
-            <CheckBox fx:id="adminCheckBox" text="Admin" onAction="#handleAdminToggle" />
+            <CheckBox fx:id="adminCheckBox" onAction="#handleAdminToggle" text="Admin" />
 
-            <TextField fx:id="roleField" promptText="Admin Role" disable="true" />
-            <TextField fx:id="departmentField" promptText="Department" disable="true" />
+            <TextField fx:id="roleField" disable="true" promptText="Admin Role" />
+            <TextField fx:id="departmentField" disable="true" promptText="Department" />
         </VBox>
 
-        <HBox spacing="15.0" alignment="CENTER">
-            <Button fx:id="createButton" text="Create"
-                    onAction="#handleCreate"
-                    style="-fx-background-color: #1F3B73; -fx-text-fill: white; -fx-padding: 8 20; -fx-font-size: 14px; -fx-background-radius: 6;" />
-            <Button fx:id="backButton" text="Back"
-                    onAction="#handleBack"
-                    style="-fx-background-color: transparent; -fx-border-color: #1F3B73; -fx-text-fill: #1F3B73; -fx-padding: 8 20; -fx-font-size: 14px; -fx-background-radius: 6; -fx-border-radius: 6;" />
+        <HBox alignment="CENTER" spacing="15.0">
+            <Button fx:id="createButton" onAction="#handleCreate" style="-fx-background-color: #1F3B73; -fx-text-fill: white; -fx-padding: 8 20; -fx-font-size: 14px; -fx-background-radius: 6;" text="Create" />
+            <Button fx:id="backButton" onAction="#handleBack" style="-fx-background-color: transparent; -fx-border-color: #1F3B73; -fx-text-fill: #1F3B73; -fx-padding: 8 20; -fx-font-size: 14px; -fx-background-radius: 6; -fx-border-radius: 6;" text="Back" />
         </HBox>
 
     </VBox>

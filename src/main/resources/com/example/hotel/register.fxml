@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -23,8 +25,14 @@
     <TextField fx:id="regEmailField" promptText="Email" style="-fx-background-radius: 10; -fx-padding: 8;" />
 
     <TextField fx:id="regPhoneNumberField" promptText="Phone Number" style="-fx-background-radius: 10; -fx-padding: 8;" />
-
-    <PasswordField fx:id="regPasswordField" promptText="Password" style="-fx-background-radius: 10; -fx-padding: 8;" />
+      <AnchorPane prefHeight="128.0" prefWidth="290.0">
+         <children>
+      
+          <PasswordField fx:id="regPasswordField" layoutX="2.0" layoutY="-1.0" prefHeight="33.0" prefWidth="225.0" promptText="Password" style="-fx-background-radius: 10; -fx-padding: 8;" />
+            <TextField fx:id="VisiblePasswordField" layoutX="2.0" layoutY="-1.0" prefHeight="33.0" prefWidth="225.0" promptText="Password" style="-fx-background-radius: 10; -fx-padding: 8;" visible="false" />
+            <CheckBox fx:id="showPasswordCheckBox" layoutX="233.0" layoutY="6.0" mnemonicParsing="false" onAction="#togglePasswordVisibility" text="Show" />
+         </children>
+      </AnchorPane>
 
     <HBox alignment="CENTER" spacing="10">
       <Button fx:id="doRegisterBtn" onAction="#onDoRegister" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 8 20;" text="Register" />
