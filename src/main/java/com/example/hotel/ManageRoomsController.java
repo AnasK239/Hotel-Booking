@@ -8,10 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -91,7 +92,7 @@ public class ManageRoomsController implements UserAwareController {
         try {
             navigateToScreen("AddRoom.fxml", event, "Add Rooms");
         } catch (IOException e) {
-
+            System.out.println("Error loading add room screen: " + e.getMessage());
         }
     }
 
@@ -108,7 +109,7 @@ public class ManageRoomsController implements UserAwareController {
 
             System.out.println("Room Removed");
         } else {
-
+            showAlert("Selection Error", "No room selected for removal.");
         }
     }
 
@@ -117,7 +118,7 @@ public class ManageRoomsController implements UserAwareController {
         try {
             navigateToScreen("Admin.fxml", event, "Admin Dashboard");
         } catch (IOException e) {
-
+            System.out.println("Error loading admin screen: " + e.getMessage());
         }
     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
@@ -132,5 +133,12 @@ public class ManageRoomsController implements UserAwareController {
         stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
+    }
+        private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

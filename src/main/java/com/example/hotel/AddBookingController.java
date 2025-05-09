@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -55,7 +56,13 @@ public class AddBookingController implements UserAwareController{
 
     @FXML
     public void update() {
-        loyaltyIcon.setImage(new Image(getClass().getResourceAsStream("/loyalty.png")));
+        // loyaltyIcon.setImage(new Image(getClass().getResourceAsStream("src/main/resources/Loyalty.png")));
+        InputStream stream = getClass().getResourceAsStream("/Loyalty.png");
+        if (stream != null) {
+            loyaltyIcon.setImage(new Image(stream));
+        } else {
+            System.out.println("⚠️ Image not found: /Loyalty.png");
+        }
 
         loyaltyPointsLabel.setText("Points: " + customer.getLoyaltyPoints());
 
@@ -109,7 +116,14 @@ public class AddBookingController implements UserAwareController{
         int totalPoints = days * pointsPerDay;
         customer.addLoyaltyPoints(totalPoints);
 
-        navigateToScreen("customer2.fxml", event, "Dashboard");
+        try
+        {
+            navigateToScreen("customer2.fxml", event, "Dashboard");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error loading customer screen: " + e.getMessage());
+        }
     }
 
     private void updatePriceLabel() {
@@ -148,6 +162,7 @@ public class AddBookingController implements UserAwareController{
             navigateToScreen("customer2.fxml" , event , "Dashboard");
         }
         catch(Exception e){
+            System.out.println("Error loading customer screen: " + e.getMessage());
         }
     }
 

@@ -62,7 +62,7 @@ public class customerController implements UserAwareController{
         try {
             navigateToScreen("AvailableRooms.fxml", event, "Available Rooms");
         } catch (IOException e) {
-
+            System.out.println("Error loading Available Rooms screen: " + e.getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ public class customerController implements UserAwareController{
         try {
             navigateToScreen("AddBooking.fxml", event, "Create Booking");
         } catch (IOException e) {
-
+            System.out.println("Error loading Add Booking screen: " + e.getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ public class customerController implements UserAwareController{
         try {
             navigateToScreen("UserBookingHistory.fxml", event, "Booking History");
         } catch (IOException e) {
-
+            System.out.println("Error loading Booking History screen: " + e.getMessage());
         }
     }
     @FXML
@@ -91,7 +91,7 @@ public class customerController implements UserAwareController{
         try {
             navigateToScreen("UserInfo.fxml", event, "User Information");
         } catch (IOException e) {
-
+            System.out.println("Error loading User Info screen: " + e.getMessage());
         }
     }
 
@@ -100,7 +100,7 @@ public class customerController implements UserAwareController{
         try {
             navigateToScreen("login.fxml", event, "Login");
         } catch (IOException e) {
-
+            System.out.println("Error loading login screen: " + e.getMessage());
         }
     }
 

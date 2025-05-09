@@ -126,7 +126,13 @@ public class AvailableRoomsController implements UserAwareController{
     }
 
         public void handlebackbtn(ActionEvent event) throws IOException {
-        navigateToScreen("customer2.fxml", event, "Dashboard");
+        try{
+                navigateToScreen("customer2.fxml", event, "Dashboard");
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error loading customer screen: " + e.getMessage());
+        }
     }
 
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {

@@ -65,7 +65,7 @@ public class adminController implements UserAwareController {
         try {
             navigateToScreen("ManageRooms.fxml", event, "Manage Rooms");
         } catch (IOException e) {
-
+            System.out.println("Error loading Manage Rooms screen: " + e.getMessage());
         }
     }
 
@@ -76,7 +76,7 @@ public class adminController implements UserAwareController {
         try {
             navigateToScreen("ManageUsers.fxml", event, "Manage Users");
         } catch (IOException e) {
-
+            System.out.println("Error loading Manage Users screen: " + e.getMessage());
         }
     }
 
@@ -86,7 +86,7 @@ public class adminController implements UserAwareController {
         try {
             navigateToScreen("ViewAllBookings.fxml", event, "All Bookings");
         } catch (IOException e) {
-
+            System.out.println("Error loading View All Bookings screen: " + e.getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ public class adminController implements UserAwareController {
         try {
             navigateToScreen("MyInfo.fxml", event, "My Info");
         } catch (IOException e) {
-
+            System.out.println("Error loading My Info screen: " + e.getMessage());
         }
     }
 
@@ -105,7 +105,7 @@ public class adminController implements UserAwareController {
         try {
             navigateToScreen("login.fxml", event, "Login");
         } catch (IOException e) {
-
+            System.out.println("Error loading login screen: " + e.getMessage());
         }
     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {

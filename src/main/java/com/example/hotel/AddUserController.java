@@ -75,7 +75,7 @@ public class AddUserController implements UserAwareController{
         try {
             navigateToScreen("ManageUsers.fxml", event, "Manage Users");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error loading Manage Users screen: " + e.getMessage());
         }
     }
 
@@ -129,7 +129,7 @@ public class AddUserController implements UserAwareController{
         try {
             navigateToScreen("ManageUsers.fxml", event, "Manage Users");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error loading Manage Users screen: " + e.getMessage());
         }
     }
 

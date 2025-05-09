@@ -32,7 +32,7 @@ public class MyInfoController implements UserAwareController{
         try {
             navigateToScreen("Admin.fxml", event, "Admin Dashboard");
         } catch (IOException e) {
-
+            System.out.println("Error loading admin screen: " + e.getMessage());
         }
     }
     @Override

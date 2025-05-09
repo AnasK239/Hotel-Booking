@@ -44,7 +44,7 @@ public class UserInfoController implements UserAwareController{
         try {
             navigateToScreen("customer2.fxml", event, "Dashboard");
         } catch (IOException e) {
-
+            System.out.println("Error loading customer screen: " + e.getMessage());
         }
     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {

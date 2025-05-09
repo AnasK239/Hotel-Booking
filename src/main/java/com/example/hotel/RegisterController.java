@@ -57,7 +57,12 @@ public class RegisterController {
 
     @FXML
     public void onDoBack(ActionEvent event) throws IOException {
-        navigateToScreen("welcome.fxml", event, "Hotel Booking System");
+        try{
+            navigateToScreen("welcome.fxml", event, "Hotel Booking System");
+        }
+        catch (IOException e){
+            System.out.println("Error loading welcome screen: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -110,7 +115,12 @@ public class RegisterController {
             long input = Long.parseLong(phoneText);
             if (!User.checkUserRegistered(regUsernameField.getText())){
                 User u = new Customer(name, username, email, password, phoneText);
-                navigateToScreen("login.fxml", event, "Login");
+                try{
+                    navigateToScreen("login.fxml", event, "Login");
+                }
+                catch (IOException e){
+                    System.out.println("Error loading login screen: " + e.getMessage());
+                }
             }
             errorLabel.setText("Username already exists");
             errorLabel.setVisible(true);

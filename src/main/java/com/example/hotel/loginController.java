@@ -2,7 +2,6 @@ package com.example.hotel;
 
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -49,8 +48,14 @@ public class loginController {
 
     @FXML
     public void onBackFromLogin(ActionEvent event) throws IOException {
-
-        navigateToScreen("welcome.fxml", event, "Hotel Booking System");
+        try
+        {
+            navigateToScreen("welcome.fxml", event, "Hotel Booking System");
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error loading welcome screen: " + e.getMessage());
+        }
     }
 
     public void onDoLogin(ActionEvent event) throws IOException {
@@ -61,10 +66,25 @@ public class loginController {
         for (User u : all){
             if (u.getUserName().equals(loginUsernameField.getText()) && u.getPassword().equals(password)) {
                 if (u instanceof Customer) {
-                    navigateToScreenFwd("customer2.fxml", event, "Dashboard", u);
+                    try
+                    {
+                        navigateToScreenFwd("customer2.fxml", event, "Dashboard", u);
+                    }
+                    catch (IOException e)
+                    {
+                        System.out.println("Error loading customer dashboard: " + e.getMessage());
+                    }
                 }
                 else if (u instanceof Admin) {
-                    navigateToScreenFwd("Admin.fxml", event, "Dashboard", u);
+
+                    try
+                    {
+                        navigateToScreenFwd("Admin.fxml", event, "Dashboard", u);
+                    }
+                    catch (IOException e)
+                    {
+                        System.out.println("Error loading Admin Screen"+ e.getMessage());
+                    }
                 }
             }
         }

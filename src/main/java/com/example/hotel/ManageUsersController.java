@@ -72,7 +72,7 @@ public class ManageUsersController implements UserAwareController{
         try {
             navigateToScreen("Admin.fxml", event, "Admin Dashboard");
         } catch (IOException e) {
-            showAlert("Navigation Error", "Could not navigate to Admin screen: " + e.getMessage());
+            System.out.println("Error loading admin dashboard: " + e.getMessage());
         }
     }
 
@@ -85,7 +85,7 @@ public class ManageUsersController implements UserAwareController{
             try {
                 navigateToScreen("userUpdate.fxml", event, "Update User");
             } catch (IOException e) {
-                showAlert("Navigation Error", "Could not navigate to Update User screen: " + e.getMessage());
+                System.out.println("Error loading update user screen: " + e.getMessage());
             }
         } else {
             showAlert("Selection Error", "No user selected for update.");
@@ -113,7 +113,7 @@ public class ManageUsersController implements UserAwareController{
         try {
             navigateToScreen("AddUser.fxml", event, "Add User");
         } catch (IOException e) {
-            showAlert("Navigation Error", "Could not navigate to Update User screen: " + e.getMessage());
+            System.out.println("Error loading add user screen: " + e.getMessage());
         }
     }
 

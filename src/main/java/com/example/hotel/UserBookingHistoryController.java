@@ -17,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -84,7 +83,7 @@ public class UserBookingHistoryController implements UserAwareController{
         try {
             navigateToScreen("customer2.fxml", event, "Login");
         } catch (IOException e) {
-
+            System.out.println("Error loading customer screen: " + e.getMessage());
         }
     }
 
@@ -104,8 +103,9 @@ public class UserBookingHistoryController implements UserAwareController{
         if (selectedBooking != null) {
             customer.viewBookingsHistory().remove(selectedBooking);
             Booking.getAllBookings().remove(selectedBooking);
-            int days = (int) (checkInDate.getTime() - checkOutDate.getTime()); 
+            int days = (int) (checkOutDate.getTime() - checkInDate.getTime()); 
             days /= (1000 * 60 * 60 * 24); // Convert milliseconds to days
+            days += 1; 
             Room room = selectedBooking.getRoom();
             int pointsPerDay;
             if (room instanceof LuxuryRoom) {

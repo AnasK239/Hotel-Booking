@@ -65,7 +65,7 @@ public class ViewAllBookingsController implements UserAwareController{
         try {
             navigateToScreen("Admin.fxml", event, "Admin Dashboard");
         } catch (IOException e) {
-
+            System.out.println("Error loading admin dashboard: " + e.getMessage());
         }
     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
