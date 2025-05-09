@@ -21,29 +21,20 @@ import java.io.IOException;
 public class ManageUsersController implements UserAwareController{
     @FXML
     private Button backbtn;
-
     @FXML
     private Button removeUser;
-
     @FXML
     private Button updateUser;
-
     @FXML
     private TableView<User> usersTable;
-
     @FXML
     private TableColumn<User, String> emailColumn;
-
     @FXML
     private TableColumn<User, String> roleColumn;
-
     @FXML
     private TableColumn<User, String> usernameColumn;
-
-    
     @FXML
     private Button addUser;
-    
     @FXML
     private ObservableList<User> usersList;
 

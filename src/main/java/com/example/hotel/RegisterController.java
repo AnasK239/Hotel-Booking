@@ -77,55 +77,47 @@ public class RegisterController {
             return;
         }
         if (User.checkUserRegistered(username)) {
-            // showAlert("Username is used", "Username is used choose another one");
             errorLabel.setText("Username is used choose another one");
             errorLabel.setVisible(true);
             return;
         }
         // Check if the username is numbers only
         if (username.matches("\\d+") || email.matches("\\d+") || name.matches("\\d+")) {
-            // showAlert("Invalid Username", "Username cannot be numbers only.");
             errorLabel.setText("fields cannot be numbers only.");
             errorLabel.setVisible(true);
             return;
         }
         // Check if the username first char is number
         if (Character.isDigit(username.charAt(0)) || Character.isDigit(email.charAt(0)) || Character.isDigit(name.charAt(0))) {
-            // showAlert("Invalid field", "fields cannot start with a number.");
             errorLabel.setText("fields cannot start with a number.");
             errorLabel.setVisible(true);
             return;
         }
         // check if password is less than 8 characters
         if (password.length() < 8) {
-            // showAlert("Invalid Password", "Password must be at least 8 characters long.");
             errorLabel.setText("Password must be at least 8 characters long.");
             errorLabel.setVisible(true);
             return;
         }
         //check if valid email
         if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-            // showAlert("Invalid Email", "Email is not valid.");
             errorLabel.setText("Email is not valid.");
             errorLabel.setVisible(true);
             return;
         }
         
         try {
-            long input = Long.parseLong(regPhoneNumberField.getText());
+            long input = Long.parseLong(phoneText);
             if (!User.checkUserRegistered(regUsernameField.getText())){
-                User u = new Customer(regNameField.getText(), regUsernameField.getText(), regEmailField.getText(), regPasswordField.getText(), regPhoneNumberField.getText());
-                navigateToScreen("login.fxml", event, "Dashboard");
+                User u = new Customer(name, username, email, password, phoneText);
+                navigateToScreen("login.fxml", event, "Login");
             }
             errorLabel.setText("Username already exists");
             errorLabel.setVisible(true);
-
         } catch (NumberFormatException e) {
             errorLabel.setText("Phone number must be a valid number");
             errorLabel.setVisible(true);
         }
-        
-
 
     }
 

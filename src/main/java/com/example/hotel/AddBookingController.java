@@ -78,6 +78,9 @@ public class AddBookingController implements UserAwareController{
             statusLabel.setStyle("-fx-text-fill: red;");
             return;
         }
+        if (checkIn.isAfter(checkOut) || checkIn.isBefore(LocalDate.now()) || checkOut.isBefore(LocalDate.now())) {
+            return;
+        }
 
         Date checkInDate = java.sql.Date.valueOf(checkIn);
         Date checkOutDate = java.sql.Date.valueOf(checkOut);
