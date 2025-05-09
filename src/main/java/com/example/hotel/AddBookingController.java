@@ -1,6 +1,5 @@
 package com.example.hotel;
 
-import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,8 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -37,6 +37,10 @@ public class AddBookingController implements UserAwareController{
     @FXML
     private Label priceLabel;
     @FXML
+    private ImageView loyaltyIcon;
+    @FXML
+    private Label loyaltyPointsLabel;
+    @FXML
     private Button backbtn;
     @FXML
     private Button bookBtn;
@@ -51,6 +55,10 @@ public class AddBookingController implements UserAwareController{
 
     @FXML
     public void update() {
+        loyaltyIcon.setImage(new Image(getClass().getResourceAsStream("/loyalty.png")));
+
+        loyaltyPointsLabel.setText("Points: " + customer.getLoyaltyPoints());
+
         hotelComboBox.setItems(FXCollections.observableArrayList(Hotel.getAllHotels()));
 
         hotelComboBox.setOnAction(e -> {
@@ -88,7 +96,7 @@ public class AddBookingController implements UserAwareController{
         customer.bookRoom(hotel, room, checkInDate, checkOutDate);
         room.setBooked(true);
         int points = customer.getLoyaltyPoints();
-        customer.redeemLoyaltyPoints(points);
+        customer.removeLoyaltyPoints(points);
         int days = (int) ChronoUnit.DAYS.between(checkIn, checkOut) + 1;
         int pointsPerDay;
         if (room instanceof LuxuryRoom) {

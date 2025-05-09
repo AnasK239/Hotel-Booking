@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,6 +30,22 @@ public class AvailableRoomsController implements UserAwareController{
     @FXML
     private TableColumn<Room, Float> priceCol;
     @FXML
+    private TableColumn<Room, Integer> capacityCol;
+    @FXML private
+    TableColumn<Room, String> bedTypeCol;
+    @FXML private
+    TableColumn<Room, String> tvCol;
+    @FXML private
+    TableColumn<Room, String> balconyCol;
+    @FXML private
+    TableColumn<Room, String> jacuzziCol;
+    @FXML
+    private TableColumn<Room, String> descriptionCol;
+    @FXML private
+    TableColumn<Room, String> featureCol;
+    @FXML private
+    TableColumn<Room, String> themeCol;
+    @FXML
     private Button backbtn;
 
     private Customer customer;
@@ -45,16 +60,14 @@ public class AvailableRoomsController implements UserAwareController{
     public void updateTable() {
 
         hotelCol.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getHotel().getName())
-        );
+                new SimpleStringProperty(cellData.getValue().getHotel().getName()));
 
         roomNumberCol.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getID()).asObject()
-        );
+                new SimpleIntegerProperty(cellData.getValue().getID()).asObject());
 
         roomTypeCol.setCellValueFactory(cellData ->
-                new ReadOnlyObjectWrapper<>(cellData.getValue())
-        );
+                new ReadOnlyObjectWrapper<>(cellData.getValue()));
+
         roomTypeCol.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Room room, boolean empty) {
@@ -62,12 +75,42 @@ public class AvailableRoomsController implements UserAwareController{
                 setText(empty || room == null ? "" : room.getClass().getSimpleName());
             }
         });
-
         priceCol.setCellValueFactory(cellData ->
                 new SimpleFloatProperty(cellData.getValue().getPrice()).asObject()
         );
 
-        // Set data only available rooms
+        capacityCol.setCellValueFactory(cellData ->
+                new SimpleIntegerProperty(cellData.getValue().getCapacity()).asObject()
+        );
+
+        bedTypeCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue() instanceof StandardRoom ?
+                        ((StandardRoom) cellData.getValue()).getBedType() : "King"));
+
+        tvCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue() instanceof StandardRoom ?
+                        (((StandardRoom) cellData.getValue()).hasTV() ? "Yes" : "No") : "Yes"));
+
+        balconyCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue() instanceof LuxuryRoom ?
+                        (((LuxuryRoom) cellData.getValue()).hasBalcony() ? "Yes" : "No") : "-"));
+
+        jacuzziCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue() instanceof LuxuryRoom ?
+                        (((LuxuryRoom) cellData.getValue()).hasJacuzzi() ? "Yes" : "No") : "-"));
+
+        descriptionCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getDescription())
+        );
+
+        featureCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue() instanceof UniqueRoom ?
+                        ((UniqueRoom) cellData.getValue()).getUniqueFeature() : "-"));
+
+        themeCol.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue() instanceof UniqueRoom ?
+                        ((UniqueRoom) cellData.getValue()).getTheme() : "-"));
+        // Set only available rooms
         ObservableList<Room> availableRooms = FXCollections.observableArrayList();
         for (Room r : Room.getAllRooms()) {
             if (!r.isBooked()) {
@@ -83,7 +126,6 @@ public class AvailableRoomsController implements UserAwareController{
     }
 
         public void handlebackbtn(ActionEvent event) throws IOException {
-
         navigateToScreen("customer2.fxml", event, "Dashboard");
     }
 
