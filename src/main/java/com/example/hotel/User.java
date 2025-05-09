@@ -79,6 +79,13 @@ public class User {
         return users;
     }
     static void removeUser(User user) {
+        if (user instanceof Customer) {
+            Customer customer = (Customer) user;
+            for (Booking booking : customer.viewBookingsHistory()) {
+                booking.getRoom().setBooked(false);
+                Booking.getAllBookings().remove(booking);
+            }
+        }
         users.remove(user);
     }
     static boolean checkUserRegistered(String u) {

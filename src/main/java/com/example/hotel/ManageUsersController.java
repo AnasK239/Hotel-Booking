@@ -79,7 +79,7 @@ public class ManageUsersController implements UserAwareController{
     @FXML
     public void handlebackbtn(ActionEvent event) {
         try {
-            navigateToScreenBck("Admin.fxml", event, "Admin Dashboard");
+            navigateToScreen("Admin.fxml", event, "Admin Dashboard");
         } catch (IOException e) {
             showAlert("Navigation Error", "Could not navigate to Admin screen: " + e.getMessage());
         }
@@ -107,7 +107,6 @@ public class ManageUsersController implements UserAwareController{
         if (selected != null) {
             // Remove from the data model
             User.removeUser(selected);
-
             // Remove from the ObservableList to update the UI
             usersList.remove(selected);
 
@@ -127,30 +126,20 @@ public class ManageUsersController implements UserAwareController{
         }
     }
 
-
-     private void navigateToScreenBck(String fxmlFile, ActionEvent event, String title) throws IOException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-         Parent root = loader.load();
-         adminController controller= loader.getController();
-         controller.setUser(admin);
-         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-         Scene scene = new Scene(root);
-         stage.setTitle(title);
-         stage.setScene(scene);
-         stage.show();
-     }
     private void navigateToScreen(String fxmlFile, ActionEvent event, String title) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
         Object controller = loader.getController();
         if (controller instanceof UpdateUserController) {
-            ((UpdateUserController) controller).setUser( usersTable.getSelectionModel().getSelectedItem());
-            ((UpdateUserController) controller).setAdmin( admin );
+            ((UpdateUserController) controller).setUser(usersTable.getSelectionModel().getSelectedItem());
+            ((UpdateUserController) controller).setAdmin(admin);
         }
         if (controller instanceof  AddUserController) {
-            ((AddUserController) controller).setUser( admin );
+            ((AddUserController) controller).setUser(admin);
         }
-
+        if (controller instanceof  adminController) {
+            ((adminController) controller).setUser(admin);
+        }
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
