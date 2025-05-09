@@ -106,8 +106,6 @@ public class loginController {
         if (controller instanceof UserAwareController) {
             ((UserAwareController) controller).setUser(u);
         }
-
-
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle(title);

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Room implements Comparable<Room>{
+public abstract class Room implements Sortable{
 
     private final int ID;
     private int capacity;
@@ -27,7 +27,7 @@ public abstract class Room implements Comparable<Room>{
 
     // Abstract Methods
     public abstract float calculateTotalPrice(int numberOfDays);
-    protected abstract int getPriority();
+    public abstract int getPriority();
 
     // Setters and Getters
     int getID() {
