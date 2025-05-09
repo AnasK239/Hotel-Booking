@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class Room implements Sortable{
 
     private final int ID;
-    private int capacity;
+    private final int capacity;
     private float price;
     private boolean booked;
     private final Hotel hotel;
@@ -36,9 +36,6 @@ public abstract class Room implements Sortable{
 
     int getCapacity() {
         return capacity;
-    }
-    void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     float getPrice() {

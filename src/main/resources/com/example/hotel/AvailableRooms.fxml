@@ -8,22 +8,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.AvailableRoomsController">
-    <VBox spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.AvailableRoomsController">
+    <VBox prefHeight="620.0" prefWidth="849.0" spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 
         <Label layoutX="20" layoutY="20" style="-fx-font-size: 18px;" text="Available Rooms" />
 
-        <TableView fx:id="roomsTable" prefHeight="400.0">
+        <TableView fx:id="roomsTable" prefHeight="581.0" prefWidth="1180.0">
             <columns>
-                <TableColumn fx:id="roomTypeCol" prefWidth="140" text="Type" />
-                <TableColumn fx:id="roomNumberCol" prefWidth="140" text="Room Number" />
-                <TableColumn fx:id="hotelCol" prefWidth="140" text="Hotel" />
-                <TableColumn fx:id="priceCol" prefWidth="140" text="Price" />
+                <TableColumn fx:id="roomTypeCol" prefWidth="122.0" text="Type" />
+                <TableColumn fx:id="roomNumberCol" prefWidth="106.0" text="Room Number" />
+                <TableColumn fx:id="hotelCol" prefWidth="98.0" text="Hotel" />
+                <TableColumn fx:id="priceCol" prefWidth="90.0" text="Price" />
+                <TableColumn fx:id="capacityCol" prefWidth="77.0" text="Capacity" />
+                <TableColumn fx:id="bedTypeCol" prefWidth="98.0" text="Bed Type" />
+                <TableColumn fx:id="tvCol" prefWidth="60.0" text="TV" />
+                <TableColumn fx:id="balconyCol" prefWidth="86.0" text="Balcony" />
+                <TableColumn fx:id="jacuzziCol" prefWidth="65.0" text="Jacuzzi" />
+                <TableColumn fx:id="descriptionCol" prefWidth="194.0" text="Description" />
+                <TableColumn fx:id="featureCol" minWidth="0.0" prefWidth="95.0" text="Feature" />
+                <TableColumn fx:id="themeCol" prefWidth="88.0" text="Theme" />
             </columns>
         </TableView>
 
         <HBox spacing="10">
-            <Button fx:id="backbtn" mnemonicParsing="false" onAction="#handlebackbtn" text="Back" />
+            <Button fx:id="backbtn" mnemonicParsing="false" onAction="#handlebackbtn" prefHeight="25.0" prefWidth="71.0" text="Back" />
         </HBox>
     </VBox>
 </AnchorPane>

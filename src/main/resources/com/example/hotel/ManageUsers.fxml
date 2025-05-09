@@ -8,17 +8,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="640.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.hotel.ManageUsersController">
+<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.ManageUsersController">
 
-    <VBox spacing="15.0" AnchorPane.bottomAnchor="10.0"
-          AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <VBox spacing="15.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 
         <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="Users Management" />
 
-        <TableView fx:id="usersTable" prefHeight="400.0">
+        <TableView fx:id="usersTable" prefHeight="495.0" prefWidth="620.0">
             <columns>
                 <TableColumn fx:id="usernameColumn" prefWidth="163.0" text="Username" />
                 <TableColumn fx:id="emailColumn" prefWidth="315.0" text="Email" />
@@ -26,7 +22,7 @@
             </columns>
         </TableView>
 
-        <HBox spacing="10" alignment="CENTER">
+        <HBox alignment="CENTER" spacing="10">
             <Button fx:id="addUser" onAction="#handleAddUser" text="Add New User" />
             <Button fx:id="removeUser" onAction="#handleRemoveUser" text="Remove Selected User" />
             <Button fx:id="UpdateUser" onAction="#handleUpdateUser" text="Update Selected User" />

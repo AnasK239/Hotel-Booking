@@ -31,9 +31,6 @@ public class Customer extends User {
             this.loyaltyPoints = 0; 
         }
     }
-    void redeemLoyaltyPoints(int points) {
-        this.loyaltyPoints -= points/2;
-    }
     int getLoyaltyPoints() {
         return loyaltyPoints;
     }

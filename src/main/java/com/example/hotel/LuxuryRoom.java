@@ -19,7 +19,7 @@ public class LuxuryRoom extends Room {
     void setHasJacuzzi(boolean hasJacuzzi) {
         this.hasJacuzzi = hasJacuzzi;
     }
-    boolean haseBalcony() {
+    boolean hasBalcony() {
         return hasBalcony;
     }
     void setHasBalcony(boolean hasBalcony) {
