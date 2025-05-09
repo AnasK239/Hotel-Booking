@@ -12,15 +12,13 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-        User u1 = new Admin("ana1", "ad", "Admin", "ad", "0123456789", "Front Desk", "test");
-        User u2 = new Admin("ana2", "admin2", "Admin", "admin", "0123456789", "Back Desk", "test");
-        User u3 = new Admin("ana3", "admin3", "Admin", "admin", "0123456789", "Back Desk", "test");
-        Customer u4 = new Customer("aa", "aa", "customer", "aa", "0123456789");
-        Hotel h1 = new Hotel("Hotel1", "Location1", 5, "Description1", "1234567890", "adsa", "www.hotel1.com");
-        Hotel h2 = new Hotel("Hotel2", "Location2", 4, "Description2", "1234567890", "adsa", "www.hotel2.com");
-        Room r1 = new StandardRoom(0, 10, false, h1, "King", true, "");
-        Room r2 = new LuxuryRoom(1, 20, false, h2, "Hotel1", true, true);
-        Room r3 = new LuxuryRoom(1, 25, false,  h1, "Hotel1", true, true);
+        new Admin("ana1", "ad", "Admin", "ad", "0123456789", "Front Desk", "test");
+        new Customer("Alice", "Alice1", "Alice21@test.test", "Alice1234", "0123456789");
+        Hotel h1 = new Hotel("Hotel1", "Location1", 5, "Description1", "1234567890", "adsa@test.test", "www.hotel1.com");
+        Hotel h2 = new Hotel("Hotel2", "Location2", 4, "Description2", "1234567890", "adsa@test.test", "www.hotel2.com");
+        new StandardRoom(0, 10, false, h1, "King", true, "");
+        new LuxuryRoom(1, 20, false, h2, "Hotel1", true, true);
+        new LuxuryRoom(1, 25, false,  h1, "Hotel1", true, true);
 
         launch(args);
 

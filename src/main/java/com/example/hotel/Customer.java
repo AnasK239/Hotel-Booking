@@ -24,6 +24,13 @@ public class Customer extends User {
     void addLoyaltyPoints(int points) {
         this.loyaltyPoints += points;
     }
+    void removeLoyaltyPoints(int points) {
+        if (points <= loyaltyPoints) {
+            this.loyaltyPoints -= points;
+        } else {
+            this.loyaltyPoints = 0; 
+        }
+    }
     void redeemLoyaltyPoints(int points) {
         this.loyaltyPoints -= points/2;
     }
