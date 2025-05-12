@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.UserBookingHistoryController">
+<AnchorPane prefHeight="612.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hotel.UserBookingHistoryController">
 
-    <VBox prefHeight="660.0" prefWidth="620.0" spacing="15.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+    <VBox layoutX="10.0" layoutY="14.0" prefHeight="550.0" prefWidth="623.0" spacing="15.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
 
         <Label style="-fx-font-size: 28px; -fx-text-fill: #1F3B73;" text="All Bookings" />
 
-        <TableView fx:id="bookingsTable" prefHeight="574.0" prefWidth="620.0" VBox.vgrow="ALWAYS">
+        <TableView fx:id="bookingsTable" prefHeight="589.0" prefWidth="620.0" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="bookingIdColumn" prefWidth="100.0" text="Booking ID" />
                 <TableColumn fx:id="userColumn" prefWidth="120.0" text="User" />
@@ -25,10 +25,10 @@
             </columns>
         </TableView>
     </VBox>
-   <HBox alignment="CENTER_LEFT" layoutX="-2.0" layoutY="667.0" prefHeight="63.0" prefWidth="640.0" spacing="10.0">
+   <HBox alignment="CENTER_LEFT" layoutX="3.0" layoutY="564.0" prefHeight="21.0" prefWidth="640.0" spacing="10.0">
       <children>     
-        <Button fx:id="backbtn"  onAction="#handlebackbtn" prefHeight="14.0" prefWidth="100.0" text="Back" />
-        <Button fx:id="removeBookingBtn"  onAction="#handleRemoveBooking" prefHeight="25.0" prefWidth="161.0" text="Remove Selected Booking" />
+        <Button fx:id="backbtn" onAction="#handlebackbtn" prefHeight="14.0" prefWidth="100.0" text="Back" />
+        <Button fx:id="removeBookingBtn" onAction="#handleRemoveBooking" prefHeight="25.0" prefWidth="161.0" text="Remove Selected Booking" />
       </children>
       <padding>
          <Insets left="10.0" top="10.0" />

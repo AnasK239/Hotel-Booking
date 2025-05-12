@@ -3,7 +3,7 @@ package com.example.hotel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public abstract class User {
     private final long ID;
     private String name;
     private String userName;
