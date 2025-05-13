@@ -1,5 +1,5 @@
 package com.example.hotel;
 
-public interface Sortable {
-    int compareTo(Room other);
+public interface Sortable<E> {
+    int compareTo(E other);
 }
