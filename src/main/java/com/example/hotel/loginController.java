@@ -66,31 +66,24 @@ public class loginController {
         for (User u : all){
             if (u.getUserName().equals(loginUsernameField.getText()) && u.getPassword().equals(password)) {
                 if (u instanceof Customer) {
-                    try
-                    {
+                    try {
                         navigateToScreenFwd("customer2.fxml", event, "Dashboard", u);
                     }
-                    catch (IOException e)
-                    {
+                    catch (IOException e) {
                         System.out.println("Error loading customer dashboard: " + e.getMessage());
                     }
                 }
                 else if (u instanceof Admin) {
-
-                    try
-                    {
+                    try {
                         navigateToScreenFwd("Admin.fxml", event, "Dashboard", u);
                     }
-                    catch (IOException e)
-                    {
+                    catch (IOException e) {
                         System.out.println("Error loading Admin Screen"+ e.getMessage());
                     }
                 }
             }
         }
         errorLabel.setVisible(true);
-
-
     }
 
     @FXML

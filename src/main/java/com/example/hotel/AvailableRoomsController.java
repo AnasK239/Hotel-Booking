@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Collections;
 
 public class AvailableRoomsController implements UserAwareController{
 
@@ -26,7 +27,7 @@ public class AvailableRoomsController implements UserAwareController{
     @FXML
     private TableColumn<Room, Integer> roomNumberCol;
     @FXML
-    private TableColumn<Room, Room> roomTypeCol;
+    private TableColumn<Room, String> roomTypeCol;
     @FXML
     private TableColumn<Room, Float> priceCol;
     @FXML
@@ -66,15 +67,8 @@ public class AvailableRoomsController implements UserAwareController{
                 new SimpleIntegerProperty(cellData.getValue().getID()).asObject());
 
         roomTypeCol.setCellValueFactory(cellData ->
-                new ReadOnlyObjectWrapper<>(cellData.getValue()));
+                new SimpleStringProperty(cellData.getValue().getClass().getSimpleName()));
 
-        roomTypeCol.setCellFactory(column -> new TableCell<>() {
-            @Override
-            protected void updateItem(Room room, boolean empty) {
-                super.updateItem(room, empty);
-                setText(empty || room == null ? "" : room.getClass().getSimpleName());
-            }
-        });
         priceCol.setCellValueFactory(cellData ->
                 new SimpleFloatProperty(cellData.getValue().getPrice()).asObject()
         );
@@ -117,12 +111,8 @@ public class AvailableRoomsController implements UserAwareController{
                 availableRooms.add(r);
             }
         }
+        Collections.sort(availableRooms);
         roomsTable.setItems(availableRooms);
-        roomTypeCol.setComparator(Room::compareTo);
-        roomsTable.getSortOrder().clear();
-        roomsTable.getSortOrder().add(roomTypeCol);
-        roomTypeCol.setSortType(TableColumn.SortType.ASCENDING);
-        roomsTable.sort();
     }
 
         public void handlebackbtn(ActionEvent event) throws IOException {

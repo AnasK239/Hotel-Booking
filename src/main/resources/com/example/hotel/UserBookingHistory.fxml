@@ -25,13 +25,11 @@
             </columns>
         </TableView>
     </VBox>
-   <HBox alignment="CENTER_LEFT" layoutX="3.0" layoutY="564.0" prefHeight="21.0" prefWidth="640.0" spacing="10.0">
-      <children>     
-        <Button fx:id="backbtn" onAction="#handlebackbtn" prefHeight="14.0" prefWidth="100.0" text="Back" />
-        <Button fx:id="removeBookingBtn" onAction="#handleRemoveBooking" prefHeight="25.0" prefWidth="161.0" text="Remove Selected Booking" />
-      </children>
-      <padding>
-         <Insets left="10.0" top="10.0" />
-      </padding>
-   </HBox>
+    <HBox alignment="CENTER_LEFT" layoutX="3.0" layoutY="564.0" prefHeight="21.0" prefWidth="640.0" spacing="10.0">
+        <padding>
+            <Insets left="10.0" top="10.0"/>
+        </padding>
+        <Button fx:id="backbtn" onAction="#handlebackbtn" text="Back"/>
+        <Button fx:id="removeBookingBtn" onAction="#handleRemoveBooking" prefHeight="25.0" prefWidth="161.0" text="Remove Selected Booking"/>
+    </HBox>
 </AnchorPane>

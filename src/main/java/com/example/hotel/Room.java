@@ -1,10 +1,7 @@
 package com.example.hotel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-public abstract class Room implements  Sortable<Room> {
+public abstract class Room implements Comparable <Room>{
 
     private final int ID;
     private final int capacity;
