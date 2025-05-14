@@ -37,8 +37,6 @@ public class loginController {
 
     @FXML
     private StackPane loginPane;
-
-
     @FXML
     private TextField loginUsernameField;
 
@@ -47,7 +45,7 @@ public class loginController {
 
 
     @FXML
-    public void onBackFromLogin(ActionEvent event) throws IOException {
+    public void onBackFromLogin(ActionEvent event){
         try
         {
             navigateToScreen("welcome.fxml", event, "Hotel Booking System");
@@ -58,7 +56,7 @@ public class loginController {
         }
     }
 
-    public void onDoLogin(ActionEvent event) throws IOException {
+    public void onDoLogin(ActionEvent event){
         List<User> all = User.getAllUsers();
         String password = showPasswordCheckBox.isSelected()
         ? loginVisiblePasswordField.getText()
