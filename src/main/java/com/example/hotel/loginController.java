@@ -37,8 +37,6 @@ public class loginController {
 
     @FXML
     private StackPane loginPane;
-
-
     @FXML
     private TextField loginUsernameField;
 
@@ -47,7 +45,7 @@ public class loginController {
 
 
     @FXML
-    public void onBackFromLogin(ActionEvent event) throws IOException {
+    public void onBackFromLogin(ActionEvent event){
         try
         {
             navigateToScreen("welcome.fxml", event, "Hotel Booking System");
@@ -58,7 +56,7 @@ public class loginController {
         }
     }
 
-    public void onDoLogin(ActionEvent event) throws IOException {
+    public void onDoLogin(ActionEvent event){
         List<User> all = User.getAllUsers();
         String password = showPasswordCheckBox.isSelected()
         ? loginVisiblePasswordField.getText()
@@ -66,31 +64,24 @@ public class loginController {
         for (User u : all){
             if (u.getUserName().equals(loginUsernameField.getText()) && u.getPassword().equals(password)) {
                 if (u instanceof Customer) {
-                    try
-                    {
+                    try {
                         navigateToScreenFwd("customer2.fxml", event, "Dashboard", u);
                     }
-                    catch (IOException e)
-                    {
+                    catch (IOException e) {
                         System.out.println("Error loading customer dashboard: " + e.getMessage());
                     }
                 }
                 else if (u instanceof Admin) {
-
-                    try
-                    {
+                    try {
                         navigateToScreenFwd("Admin.fxml", event, "Dashboard", u);
                     }
-                    catch (IOException e)
-                    {
+                    catch (IOException e) {
                         System.out.println("Error loading Admin Screen"+ e.getMessage());
                     }
                 }
             }
         }
         errorLabel.setVisible(true);
-
-
     }
 
     @FXML
