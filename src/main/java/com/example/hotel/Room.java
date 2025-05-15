@@ -86,7 +86,11 @@ public abstract class Room implements Comparable <Room>{
 
     @Override
     public int compareTo(Room other) {
-        return Integer.compare(this.getPriority(), other.getPriority());
+        int cmp = Integer.compare(this.getPriority(), other.getPriority());
+        if (cmp != 0) {
+            return cmp;
+        }
+        return Double.compare(other.getPrice(), this.getPrice());
     }
 
 }
