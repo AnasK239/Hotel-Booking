@@ -16,9 +16,10 @@ public class App extends Application {
         new Customer("Alice", "Alice1", "Alice21@test.test", "Alice1234", "0123456789");
         Hotel h1 = new Hotel("Hotel1", "Location1", 5, "Description1", "1234567890", "adsa@test.test", "www.hotel1.com");
         Hotel h2 = new Hotel("Hotel2", "Location2", 4, "Description2", "1234567890", "adsa@test.test", "www.hotel2.com");
-        new StandardRoom(0, 10, false, h1, "King", true, "");
+        new StandardRoom(0, 10, false, h1, "King", true, "jg");
         new LuxuryRoom(1, 20, false, h2, "Hotel1", true, true);
         new LuxuryRoom(1, 25, false,  h1, "Hotel1", true, true);
+        new LuxuryRoom(1, 15, false,  h1, "Hotel1", true, true);
 
         launch(args);
 
