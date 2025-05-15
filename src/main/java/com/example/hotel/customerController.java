@@ -32,9 +32,6 @@ public class customerController implements UserAwareController{
 
     @FXML
     private void initialize() {
-
-        System.out.println("Customer Dashboard initialized");
-
         setupButtonHoverEffects();
     }
 

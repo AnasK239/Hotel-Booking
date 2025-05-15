@@ -55,7 +55,7 @@ public class UserBookingHistoryController implements UserAwareController{
 
     @FXML
     public void updateTable() {
-        List<Booking> history = customer.viewBookingsHistory(); // Call only once
+        List<Booking> history = customer.viewBookingsHistory();
         ObservableList<Booking> observableHistory = FXCollections.observableArrayList(history);
         bookingsTable.setItems(observableHistory);
 
@@ -119,7 +119,7 @@ public class UserBookingHistoryController implements UserAwareController{
             customer.removeLoyaltyPoints(totalPoints);
             room.setBooked(false);
             updateTable();
-        } 
+        }
         
     }
 

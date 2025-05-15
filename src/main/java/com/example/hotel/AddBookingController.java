@@ -56,7 +56,6 @@ public class AddBookingController implements UserAwareController{
 
     @FXML
     public void update() {
-        // loyaltyIcon.setImage(new Image(getClass().getResourceAsStream("src/main/resources/Loyalty.png")));
         InputStream stream = getClass().getResourceAsStream("/Loyalty.png");
         if (stream != null) {
             loyaltyIcon.setImage(new Image(stream));
@@ -82,7 +81,7 @@ public class AddBookingController implements UserAwareController{
     }
 
     @FXML
-    private void handleBookNow(ActionEvent event) throws IOException {
+    private void handleBookNow(ActionEvent event) {
         Hotel hotel = hotelComboBox.getSelectionModel().getSelectedItem();
         Room room = roomComboBox.getSelectionModel().getSelectedItem();
         LocalDate checkIn = checkInDatePicker.getValue();
@@ -101,7 +100,6 @@ public class AddBookingController implements UserAwareController{
         Date checkOutDate = java.sql.Date.valueOf(checkOut);
 
         customer.bookRoom(hotel, room, checkInDate, checkOutDate);
-        room.setBooked(true);
         int points = customer.getLoyaltyPoints();
         customer.removeLoyaltyPoints(points);
         int days = (int) ChronoUnit.DAYS.between(checkIn, checkOut) + 1;

@@ -32,20 +32,20 @@ public class AvailableRoomsController implements UserAwareController{
     private TableColumn<Room, Float> priceCol;
     @FXML
     private TableColumn<Room, Integer> capacityCol;
-    @FXML private
-    TableColumn<Room, String> bedTypeCol;
-    @FXML private
-    TableColumn<Room, String> tvCol;
-    @FXML private
-    TableColumn<Room, String> balconyCol;
-    @FXML private
-    TableColumn<Room, String> jacuzziCol;
+    @FXML
+    private TableColumn<Room, String> bedTypeCol;
+    @FXML
+    private TableColumn<Room, String> tvCol;
+    @FXML
+    private TableColumn<Room, String> balconyCol;
+    @FXML
+    private TableColumn<Room, String> jacuzziCol;
     @FXML
     private TableColumn<Room, String> descriptionCol;
-    @FXML private
-    TableColumn<Room, String> featureCol;
-    @FXML private
-    TableColumn<Room, String> themeCol;
+    @FXML
+    private TableColumn<Room, String> featureCol;
+    @FXML
+    private TableColumn<Room, String> themeCol;
     @FXML
     private Button backbtn;
 
@@ -59,7 +59,6 @@ public class AvailableRoomsController implements UserAwareController{
 
     @FXML
     public void updateTable() {
-
         hotelCol.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getHotel().getName()));
 

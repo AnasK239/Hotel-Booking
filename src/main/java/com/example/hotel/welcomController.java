@@ -28,7 +28,7 @@ public class welcomController {
     private Scene scene;
     private Parent root;
 
-    public void switchToScene1(ActionEvent event) throws IOException {
+    public void switchToScene1(ActionEvent event){
         try{
             root = FXMLLoader.load(getClass().getResource("register.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -44,7 +44,7 @@ public class welcomController {
 
     @FXML
 
-    public void switchToScene2(ActionEvent event) throws IOException {
+    public void switchToScene2(ActionEvent event){
         try{
             root = FXMLLoader.load(getClass().getResource("login.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();

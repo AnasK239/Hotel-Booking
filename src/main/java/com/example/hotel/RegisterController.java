@@ -56,7 +56,7 @@ public class RegisterController {
 
 
     @FXML
-    public void onDoBack(ActionEvent event) throws IOException {
+    public void onDoBack(ActionEvent event){
         try{
             navigateToScreen("welcome.fxml", event, "Hotel Booking System");
         }
@@ -66,7 +66,7 @@ public class RegisterController {
     }
 
     @FXML
-    void onDoRegister(ActionEvent event) throws IOException {
+    void onDoRegister(ActionEvent event){
         String name = regNameField.getText().trim();
         String username = regUsernameField.getText().trim();
         String email = regEmailField.getText().trim();
