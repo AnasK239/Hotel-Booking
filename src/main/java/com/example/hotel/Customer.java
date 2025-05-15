@@ -15,8 +15,9 @@ public class Customer extends User {
         this.bookings_prv = new ArrayList<>();
     }
     void bookRoom(Hotel hotel, Room room, Date checkInDate, Date checkOutDate) {
-       Booking booking = new Booking(this, hotel, room, checkInDate, checkOutDate);
-       bookings_prv.add(booking);
+        Booking booking = new Booking(this, hotel, room, checkInDate, checkOutDate);
+        room.setBooked(true);
+        bookings_prv.add(booking);
    }
     List<Booking> viewBookingsHistory() {
         return bookings_prv;
