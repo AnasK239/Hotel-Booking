@@ -75,9 +75,15 @@ public class RegisterController {
         : regPasswordField.getText();
         String phoneText = regPhoneNumberField.getText().trim();
 
-        // Check if any are empty
-        if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty() || phoneText.isEmpty()) {
-            errorLabel.setText("Fields cannot be empty");
+        // Check if any are empty & Check if the username first char is number
+        try {
+            if (Character.isDigit(username.charAt(0)) || Character.isDigit(email.charAt(0)) || Character.isDigit(name.charAt(0))) {
+                errorLabel.setText("Fields cannot start with a number");
+                errorLabel.setVisible(true);
+                return;
+            }
+        } catch (StringIndexOutOfBoundsException e) {
+            errorLabel.setText("Fields must not be empty");
             errorLabel.setVisible(true);
             return;
         }
@@ -89,12 +95,6 @@ public class RegisterController {
         // Check if the username is numbers only
         if (username.matches("\\d+") || email.matches("\\d+") || name.matches("\\d+")) {
             errorLabel.setText("fields cannot be numbers only.");
-            errorLabel.setVisible(true);
-            return;
-        }
-        // Check if the username first char is number
-        if (Character.isDigit(username.charAt(0)) || Character.isDigit(email.charAt(0)) || Character.isDigit(name.charAt(0))) {
-            errorLabel.setText("fields cannot start with a number.");
             errorLabel.setVisible(true);
             return;
         }
@@ -113,19 +113,15 @@ public class RegisterController {
         
         try {
             long input = Long.parseLong(phoneText);
-            if (!User.checkUserRegistered(regUsernameField.getText())){
-                new Customer(name, username, email, password, phoneText);
-                try{
-                    navigateToScreen("login.fxml", event, "Login");
-                }
-                catch (IOException e){
-                    System.out.println("Error loading login screen: " + e.getMessage());
-                }
+            new Customer(name, username, email, password, phoneText);
+            try{
+                navigateToScreen("login.fxml", event, "Login");
             }
-            errorLabel.setText("Username already exists");
-            errorLabel.setVisible(true);
+            catch (IOException e){
+                System.out.println("Error loading login screen: " + e.getMessage());
+            }
         } catch (NumberFormatException e) {
-            errorLabel.setText("Phone number must be a valid number");
+            errorLabel.setText("Phone number must be a numbers only");
             errorLabel.setVisible(true);
         }
 
