@@ -12,7 +12,7 @@ public abstract class Room implements Comparable <Room>{
 
     private static List<Room> rooms = new ArrayList<>();
     
-    protected Room(int capacity, float price, boolean booked, Hotel hotel, String description) {
+    public Room(int capacity, float price, boolean booked, Hotel hotel, String description) {
         this.ID = hotel.getRooms().size() + 1;
         this.capacity = capacity;
         this.price = price;
