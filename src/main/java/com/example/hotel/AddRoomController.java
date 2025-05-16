@@ -67,11 +67,9 @@ public class AddRoomController implements UserAwareController {
 
         hotelComboBox.setItems(FXCollections.observableArrayList(Hotel.getAllHotels()));
 
-
         roomTypeComboBox.setItems(FXCollections.observableArrayList(
                 Arrays.asList("Standard Room", "Unique Room", "Luxury Room")
         ));
-
 
         roomTypeComboBox.setOnAction(e -> {
             String selectedType = roomTypeComboBox.getValue();

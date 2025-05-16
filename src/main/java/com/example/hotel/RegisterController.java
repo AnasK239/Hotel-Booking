@@ -112,6 +112,7 @@ public class RegisterController {
         }
         
         try {
+            long input = Long.parseLong(phoneText);
             new Customer(name, username, email, password, phoneText);
             try{
                 navigateToScreen("login.fxml", event, "Login");
