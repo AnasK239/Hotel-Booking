@@ -122,6 +122,7 @@ public class AddBookingController implements UserAwareController{
         Room selectedRoom = roomComboBox.getValue();
         LocalDate checkIn = checkInDatePicker.getValue();
         LocalDate checkOut = checkOutDatePicker.getValue();
+        statusLabel.setVisible(true);
 
         if (selectedRoom == null || checkIn == null || checkOut == null) {
             priceLabel.setText("-");
@@ -139,7 +140,7 @@ public class AddBookingController implements UserAwareController{
             priceLabel.setText("-");
             return;
         }
-
+        statusLabel.setVisible(false);
         int days = (int) ChronoUnit.DAYS.between(checkIn, checkOut) + 1;
         float basePrice = selectedRoom.calculateTotalPrice(days);
         int points = customer.getLoyaltyPoints();
