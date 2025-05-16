@@ -104,13 +104,7 @@ public class AddBookingController implements UserAwareController{
         customer.removeLoyaltyPoints(points);
         int days = (int) ChronoUnit.DAYS.between(checkIn, checkOut) + 1;
         int pointsPerDay;
-        if (room instanceof LuxuryRoom) {
-            pointsPerDay = 5;
-        } else if (room instanceof UniqueRoom) {
-            pointsPerDay = 3;
-        } else {
-            pointsPerDay = 2;
-        }
+        pointsPerDay = room.getPoints();
         int totalPoints = days * pointsPerDay;
         customer.addLoyaltyPoints(totalPoints);
 

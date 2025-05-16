@@ -33,6 +33,14 @@ public class LuxuryRoom extends Room {
     }
 
     @Override
+    public int getPriority() {
+        return 1;
+    }
+
+    @Override
+    public int getPoints(){ return 5;}
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof LuxuryRoom)) return false;
@@ -42,8 +50,17 @@ public class LuxuryRoom extends Room {
                 hasBalcony == that.hasBalcony;
     }
 
-    @Override
-    public int getPriority() {
-        return 1;
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

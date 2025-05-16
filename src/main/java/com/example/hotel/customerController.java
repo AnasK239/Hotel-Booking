@@ -22,6 +22,9 @@ public class customerController implements UserAwareController{
     @FXML
     private Button logOutButton;
 
+    @FXML
+    private Button UserInfoButton;
+
     private Customer customer;
 
     @Override
@@ -45,6 +48,7 @@ public class customerController implements UserAwareController{
         setButtonHoverEffect(addBookingButton, originalStyle, hoverStyle);
         setButtonHoverEffect(viewHistoryButton, originalStyle, hoverStyle);
         setButtonHoverEffect(logOutButton, originalStyle, hoverStyle);
+        setButtonHoverEffect(UserInfoButton, originalStyle, hoverStyle);
     }
 
     private void setButtonHoverEffect(Button button, String originalStyle, String hoverStyle) {

@@ -123,6 +123,4 @@ public class loginController {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }

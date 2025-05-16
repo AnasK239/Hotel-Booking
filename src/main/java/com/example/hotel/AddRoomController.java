@@ -80,27 +80,24 @@ public class AddRoomController implements UserAwareController {
             }
         });
 
-        if (standardRoomFields != null) standardRoomFields.setVisible(false);
-        if (uniqueRoomFields != null) uniqueRoomFields.setVisible(false);
-        if (luxuryRoomFields != null) luxuryRoomFields.setVisible(false);
     }
 
     private void toggleRoomTypeFields(String roomType) {
 
-        if (standardRoomFields != null) standardRoomFields.setVisible(false);
-        if (uniqueRoomFields != null) uniqueRoomFields.setVisible(false);
-        if (luxuryRoomFields != null) luxuryRoomFields.setVisible(false);
+        standardRoomFields.setVisible(false);
+        uniqueRoomFields.setVisible(false);
+        luxuryRoomFields.setVisible(false);
 
         // Show only the fields for selected room type
         switch (roomType) {
             case "Standard Room":
-                if (standardRoomFields != null) standardRoomFields.setVisible(true);
+                standardRoomFields.setVisible(true);
                 break;
             case "Unique Room":
-                if (uniqueRoomFields != null) uniqueRoomFields.setVisible(true);
+                uniqueRoomFields.setVisible(true);
                 break;
             case "Luxury Room":
-                if (luxuryRoomFields != null) luxuryRoomFields.setVisible(true);
+                luxuryRoomFields.setVisible(true);
                 break;
         }
     }
@@ -163,7 +160,7 @@ public class AddRoomController implements UserAwareController {
                         return;
                     }
                     String bedType = bedTypeField.getText().trim();
-                    boolean hasTV = hasTVCheckbox != null && hasTVCheckbox.isSelected();
+                    boolean hasTV = hasTVCheckbox.isSelected();
 
                     newRoom = new StandardRoom(capacity, price, false, selectedHotel, bedType,
                             hasTV,
@@ -190,8 +187,8 @@ public class AddRoomController implements UserAwareController {
                     break;
 
                 case "Luxury Room":
-                    boolean hasJacuzzi = hasJacuzziCheckbox != null && hasJacuzziCheckbox.isSelected();
-                    boolean hasBalcony = hasBalconyCheckbox != null && hasBalconyCheckbox.isSelected();
+                    boolean hasJacuzzi = hasJacuzziCheckbox.isSelected();
+                    boolean hasBalcony = hasBalconyCheckbox.isSelected();
 
                     newRoom = new LuxuryRoom(capacity, price, false, selectedHotel, description,
                             hasJacuzzi,
@@ -201,8 +198,10 @@ public class AddRoomController implements UserAwareController {
             }
 
             if (newRoom != null) {
+
                 showStatus("Room successfully added to " + selectedHotel.getName(), false);
                 clearForm();
+
             } else {
                 showStatus("Failed to create room", true);
             }

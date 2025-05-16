@@ -32,6 +32,10 @@ public class StandardRoom extends Room{
     public float calculateTotalPrice(int numberOfDays) {
         return getPrice()*numberOfDays*1.1f;
     }
+    @Override
+    public int getPriority() {return 3;}
+    @Override
+    public int getPoints(){ return 2;}
 
     @Override
     public boolean equals(Object obj) {
@@ -43,8 +47,5 @@ public class StandardRoom extends Room{
                 bedType.equals(that.bedType);
     }
 
-    @Override
-    public int getPriority() {
-        return 3;
-    }
+
 }

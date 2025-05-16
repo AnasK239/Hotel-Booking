@@ -71,14 +71,6 @@ public class ManageRoomsController implements UserAwareController {
                 new SimpleBooleanProperty(!cellData.getValue().isBooked())
         );
 
-        ObservableList<Room> availableRooms = FXCollections.observableArrayList();
-        for (Room r : Room.getAllRooms()) {
-            if (!r.isBooked()) {
-                availableRooms.add(r);
-            }
-        }
-
-        roomsTable.setItems(availableRooms);
 
         refreshRoomsList();
     }

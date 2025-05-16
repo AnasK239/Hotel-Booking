@@ -103,18 +103,12 @@ public class UserBookingHistoryController implements UserAwareController{
         if (selectedBooking != null) {
             customer.viewBookingsHistory().remove(selectedBooking);
             Booking.getAllBookings().remove(selectedBooking);
-            int days = (int) (checkOutDate.getTime() - checkInDate.getTime()); 
+            int days = (int) (checkOutDate.getTime() - checkInDate.getTime());
             days /= (1000 * 60 * 60 * 24); // Convert milliseconds to days
-            days += 1; 
+            days += 1;
             Room room = selectedBooking.getRoom();
             int pointsPerDay;
-            if (room instanceof LuxuryRoom) {
-                pointsPerDay = 5;
-            } else if (room instanceof UniqueRoom) {
-                pointsPerDay = 3;
-            } else {
-                pointsPerDay = 2;
-            }
+            pointsPerDay = room.getPoints();
             int totalPoints = days * pointsPerDay;
             customer.removeLoyaltyPoints(totalPoints);
             room.setBooked(false);

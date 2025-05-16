@@ -31,6 +31,12 @@ public class UniqueRoom extends Room{
     public float calculateTotalPrice(int numberOfDays) {
         return getPrice() * numberOfDays * 1.3f;
     }
+    @Override
+    public int getPoints(){ return 3;}
+    @Override
+    public int getPriority() {
+        return 2;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -41,8 +47,5 @@ public class UniqueRoom extends Room{
         return uniqueFeature.equals(that.uniqueFeature) && theme.equals(that.theme);
     }
 
-    @Override
-    public int getPriority() {
-        return 2;
-    }
+
 }

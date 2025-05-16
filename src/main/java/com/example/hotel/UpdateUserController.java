@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 
 public class UpdateUserController implements UserAwareController {
     
-    private User user;
 
     @FXML
     private Button backButton;
@@ -48,6 +47,7 @@ public class UpdateUserController implements UserAwareController {
     @FXML
     private CheckBox showPasswordCheckBox;
     private Admin admin;
+    private User user;
 
     @FXML
     void handleBack(ActionEvent event) {

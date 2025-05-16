@@ -23,9 +23,9 @@ public abstract class Room implements Comparable <Room>{
         hotel.addRoom(this);
     }
 
-    // Abstract Methods
     public abstract float calculateTotalPrice(int numberOfDays);
     public abstract int getPriority();
+    public abstract int getPoints();
 
     // Setters and Getters
     int getID() {
